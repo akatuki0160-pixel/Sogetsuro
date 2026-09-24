@@ -1,0 +1,484 @@
+<!--
+=====================================================================
+  SOGETSURO ─ WordPress「カスタムHTML」ブロック用
+  ---------------------------------------------------------------------
+  ・このファイルの中身をすべてコピーして、固定ページの
+    「カスタムHTML」ブロックに貼り付けてください。
+  ・CSS は 02-custom.css、JS は 03-custom.js を別の場所に貼り付けます。
+  ・画像は /wp-content/uploads/sogetsuro/ にアップロードしてある前提です。
+    （別の場所に置いた場合は「/wp-content/uploads/sogetsuro/」を一括置換）
+  ・色やフォントは、下の「設定」<style> の中を書き換えてください。
+=====================================================================
+-->
+<!-- Webフォント（Shippori Mincho / Cormorant Garamond） -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&amp;family=Shippori+Mincho:wght@400;500;600&amp;display=swap">
+<!-- ========== SOGETSURO ここから ========== -->
+<!-- ▼ 設定：色・フォント・余白（ここを書き換えるとサイト全体に反映されます） -->
+<style id="sogetsuro-settings">
+.sg-site {
+  /* カラー */
+  --sg-c-bg: #f4f1ea;          /* 背景（生成り） */
+  --sg-c-bg-sub: #ebe5da;      /* 背景・サブ（お知らせ・町を歩く） */
+  --sg-c-text: #2b2724;        /* 文字（墨） */
+  --sg-c-text-sub: #6f675d;    /* 文字・サブ（補足・見出しの日本語） */
+  --sg-c-accent: #8b3d2c;      /* アクセント（弁柄）：番号・予約ボタン */
+  --sg-c-line: rgba(43, 39, 36, 0.16);       /* 罫線 */
+  --sg-c-dark: #211e1b;        /* 暗い背景（食べる・メニュー・フッター） */
+  --sg-c-dark-text: #ece6da;   /* 暗い背景の上の文字 */
+  --sg-c-dark-accent: #c49a6c; /* 暗い背景の上のアクセント（金茶） */
+  --sg-c-dark-line: rgba(236, 230, 218, 0.18);
+  /* 配色サンプル（上の値と差し替えるだけで雰囲気が変わります）
+     藍  : --sg-c-bg:#f1f2ef; --sg-c-bg-sub:#e4e7e6; --sg-c-text:#1f2a33; --sg-c-accent:#2d4a64; --sg-c-dark:#162029;
+     松葉: --sg-c-bg:#f2f1e9; --sg-c-bg-sub:#e5e5d8; --sg-c-text:#262a23; --sg-c-accent:#4d6647; --sg-c-dark:#1c211a;
+     墨  : --sg-c-bg:#f5f5f3; --sg-c-bg-sub:#e9e9e6; --sg-c-text:#222222; --sg-c-accent:#555555; --sg-c-dark:#1a1a1a; */
+
+  /* フォント */
+  --sg-f-ja: "Shippori Mincho", "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  --sg-f-en: "Cormorant Garamond", "Shippori Mincho", "Times New Roman", serif;
+
+  /* レイアウト */
+  --sg-w-inner: 1200px;        /* コンテンツの最大幅 */
+  --sg-gutter: 20px;           /* 画面端の余白（スマホ） */
+  --sg-header-h: 64px;         /* ヘッダーの高さ（スマホ） */
+  --sg-sec-space: 96px;        /* セクション上下の余白（スマホ） */
+  --sg-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (min-width: 768px) {
+  .sg-site { --sg-gutter: 40px; --sg-sec-space: 140px; }
+}
+@media (min-width: 1024px) {
+  .sg-site { --sg-gutter: 56px; --sg-header-h: 88px; --sg-sec-space: 180px; }
+}
+</style>
+<div class="sg-site" id="sg-site">
+  <script>(function(d){d.documentElement.classList.add('sg-js');try{if(sessionStorage.getItem('sg-visited')){d.documentElement.classList.add('sg-visited');}}catch(e){}})(document);</script>
+
+  <!-- ロゴマーク（円窓）※ヘッダー・フッター等で使い回しています -->
+  <svg class="sg-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="sg-emblem" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="22.5" fill="none" stroke="currentColor" stroke-width="1"/>
+      <path fill="none" stroke="currentColor" stroke-width="1" d="M16 2.97V45.03M24 1.5V46.5M32 2.97V45.03M2.62 31H45.38"/>
+    </symbol>
+  </svg>
+
+  <!-- ローディング -->
+  <div class="sg-loader" aria-hidden="true">
+    <div class="sg-loader__inner">
+      <svg class="sg-loader__mark"><use href="#sg-emblem"></use></svg>
+      <span class="sg-loader__name">SOGETSURO</span>
+    </div>
+  </div>
+
+  <!-- ヘッダー -->
+  <header class="sg-header">
+    <div class="sg-header__inner">
+      <a class="sg-header__logo" href="#sg-top" aria-label="SOGETSURO ページの先頭へ">
+        <svg class="sg-header__mark" aria-hidden="true"><use href="#sg-emblem"></use></svg>
+        <span class="sg-header__name">SOGETSURO</span>
+        <span class="sg-header__sub">古民家の宿</span>
+      </a>
+      <nav class="sg-gnav" aria-label="メインメニュー">
+        <ul class="sg-gnav__list">
+          <li><a href="#sg-concept">はじめに</a></li>
+          <li><a href="#sg-stay">泊まる</a></li>
+          <li><a href="#sg-dining">食べる</a></li>
+          <li><a href="#sg-experience">体験</a></li>
+          <li><a href="#sg-town">町を歩く</a></li>
+          <li><a href="#sg-access">アクセス</a></li>
+        </ul>
+      </nav>
+      <a class="sg-header__reserve" href="#sg-reserve"><span class="sg-header__reserve-en">Reserve</span><span class="sg-header__reserve-ja">ご予約</span></a>
+      <button class="sg-menu-btn" type="button" aria-expanded="false" aria-controls="sg-drawer" aria-label="メニューを開く">
+        <span class="sg-menu-btn__lines" aria-hidden="true"><span></span><span></span></span>
+        <span class="sg-menu-btn__text" aria-hidden="true">Menu</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- メニュー（ハンバーガーで開くパネル） -->
+  <div class="sg-drawer" id="sg-drawer" inert>
+    <div class="sg-drawer__visual" aria-hidden="true">
+      <img src="/wp-content/uploads/sogetsuro/menu.jpg" alt="" width="1200" height="1600" loading="lazy" decoding="async">
+    </div>
+    <div class="sg-drawer__body">
+      <nav class="sg-drawer__nav" aria-label="サイトメニュー">
+        <ul class="sg-drawer__list">
+          <li><a href="#sg-top"><span class="sg-drawer__en">Top</span><span class="sg-drawer__ja">トップ</span></a></li>
+          <li><a href="#sg-concept"><span class="sg-drawer__en">Concept</span><span class="sg-drawer__ja">はじめに</span></a></li>
+          <li><a href="#sg-news"><span class="sg-drawer__en">News</span><span class="sg-drawer__ja">お知らせ</span></a></li>
+          <li><a href="#sg-stay"><span class="sg-drawer__en">Stay</span><span class="sg-drawer__ja">泊まる</span></a></li>
+          <li><a href="#sg-dining"><span class="sg-drawer__en">Dining</span><span class="sg-drawer__ja">食べる</span></a></li>
+          <li><a href="#sg-experience"><span class="sg-drawer__en">Experience</span><span class="sg-drawer__ja">体験</span></a></li>
+          <li><a href="#sg-town"><span class="sg-drawer__en">Town</span><span class="sg-drawer__ja">町を歩く</span></a></li>
+          <li><a href="#sg-access"><span class="sg-drawer__en">Access</span><span class="sg-drawer__ja">アクセス</span></a></li>
+        </ul>
+      </nav>
+      <div class="sg-drawer__info">
+        <a class="sg-btn sg-btn--light" href="#sg-reserve">空室検索・ご予約</a>
+        <p class="sg-drawer__tel">TEL <a href="tel:0000000000">0000-00-0000</a></p>
+        <ul class="sg-drawer__sns">
+          <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="#" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sg-main">
+
+    <!-- ===== メインビジュアル（スライドショー） ===== -->
+    <section class="sg-hero" id="sg-top" aria-label="メインビジュアル" data-sg-slider data-interval="6000">
+      <div class="sg-hero__slides">
+        <figure class="sg-hero__slide is-active"><img src="/wp-content/uploads/sogetsuro/hero-01.jpg" alt="夕暮れの町並みと宿の外観" width="2400" height="1500" fetchpriority="high" decoding="async"></figure>
+        <figure class="sg-hero__slide"><img src="/wp-content/uploads/sogetsuro/hero-02.jpg" alt="格子戸越しに灯りのともる玄関" width="2400" height="1500" decoding="async"></figure>
+        <figure class="sg-hero__slide"><img src="/wp-content/uploads/sogetsuro/hero-03.jpg" alt="円窓から庭を望む座敷" width="2400" height="1500" decoding="async"></figure>
+      </div>
+      <div class="sg-hero__copy">
+        <h1 class="sg-hero__title" data-sg-split-group>
+          <span class="sg-hero__line" data-sg-split>町に泊まる、</span>
+          <span class="sg-hero__line" data-sg-split>家に還る。</span>
+        </h1>
+        <p class="sg-hero__lead">A century-old house, a quiet town,<br>and time that flows slowly.</p>
+      </div>
+      <div class="sg-hero__pager" aria-hidden="true">
+        <span class="sg-hero__current">01</span>
+        <span class="sg-hero__bar"><span></span></span>
+        <span class="sg-hero__total">03</span>
+      </div>
+      <a class="sg-hero__scroll" href="#sg-concept"><span>Scroll</span></a>
+    </section>
+
+    <!-- ===== 01 はじめに ===== -->
+    <section class="sg-section sg-concept" id="sg-concept">
+      <div class="sg-inner sg-concept__grid">
+        <div class="sg-concept__text">
+          <div class="sg-concept__head">
+            <div class="sg-heading sg-heading--v sg-reveal sg-reveal--v">
+              <p class="sg-heading__en"><span class="sg-heading__num">01</span>Concept</p>
+              <h2 class="sg-heading__ja">はじめに</h2>
+            </div>
+            <p class="sg-catch sg-reveal sg-reveal--v" style="--d:.2s">
+              <span class="sg-catch__line">百年の家に、</span>
+              <span class="sg-catch__line">ふたたび灯りを。</span>
+            </p>
+          </div>
+          <div class="sg-concept__body sg-reveal sg-reveal--v" style="--d:.4s">
+            <p>町の人びとに見守られながら、長い年月を重ねてきた一軒の古い家。私たちはこの家を、ひとつずつ手をかけて宿に生まれ変わらせました。</p>
+            <p>黒光りする梁、すり減った敷居、格子越しにさしこむやわらかな光。この家が刻んできた時間は、できるかぎりそのままに残しています。</p>
+            <p>朝は路地を歩き、昼は町の人と言葉を交わし、夜は灯りの下で土地の味を囲む。</p>
+            <p>旅先で、暮らすように過ごす。そんな滞在のための古民家の宿です。</p>
+          </div>
+        </div>
+        <figure class="sg-concept__photo sg-concept__photo--a sg-reveal sg-reveal--mask" data-sg-parallax>
+          <img src="/wp-content/uploads/sogetsuro/concept-01.jpg" alt="障子越しの光がさしこむ座敷" width="1200" height="1600" loading="lazy" decoding="async">
+        </figure>
+        <figure class="sg-concept__photo sg-concept__photo--b sg-reveal sg-reveal--mask" style="--d:.3s">
+          <img src="/wp-content/uploads/sogetsuro/concept-02.jpg" alt="瓦屋根の連なる町並み" width="1200" height="800" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== お知らせ ===== -->
+    <section class="sg-section sg-news" id="sg-news">
+      <div class="sg-inner sg-news__inner">
+        <div class="sg-heading sg-heading--s sg-reveal">
+          <p class="sg-heading__en">News</p>
+          <h2 class="sg-heading__ja">お知らせ</h2>
+        </div>
+        <ul class="sg-news__list sg-reveal" style="--d:.15s">
+          <li class="sg-news__item">
+            <a href="#">
+              <time class="sg-news__date" datetime="2026-09-01">2026.09.01</time>
+              <span class="sg-news__cat">お知らせ</span>
+              <span class="sg-news__title">秋の町歩きプランのご予約受付を開始しました</span>
+            </a>
+          </li>
+          <li class="sg-news__item">
+            <a href="#">
+              <time class="sg-news__date" datetime="2026-08-10">2026.08.10</time>
+              <span class="sg-news__cat">メディア</span>
+              <span class="sg-news__title">雑誌「〇〇〇〇」秋号にてご紹介いただきました</span>
+            </a>
+          </li>
+          <li class="sg-news__item">
+            <a href="#">
+              <time class="sg-news__date" datetime="2026-07-25">2026.07.25</time>
+              <span class="sg-news__cat">営業案内</span>
+              <span class="sg-news__title">年末年始の営業日についてのご案内</span>
+            </a>
+          </li>
+        </ul>
+        <a class="sg-link-arrow sg-news__more" href="#">一覧を見る</a>
+      </div>
+    </section>
+
+    <!-- ===== 02 泊まる ===== -->
+    <section class="sg-section sg-stay" id="sg-stay">
+      <div class="sg-inner sg-stay__head">
+        <div class="sg-heading sg-reveal">
+          <p class="sg-heading__en"><span class="sg-heading__num">02</span>Stay</p>
+          <h2 class="sg-heading__ja">泊まる</h2>
+        </div>
+        <p class="sg-stay__lead sg-reveal" style="--d:.2s">一日数組かぎり、一棟まるごとの貸し切り。<br>家族や友人と、自分たちだけの時間をお過ごしください。</p>
+      </div>
+
+      <div class="sg-inner sg-stay__list">
+        <!-- 客室1 -->
+        <article class="sg-room">
+          <figure class="sg-room__photo sg-reveal sg-reveal--mask" data-sg-parallax>
+            <img src="/wp-content/uploads/sogetsuro/stay-01.jpg" alt="吹き抜けの土間と座敷が広がる母屋" width="1800" height="1200" loading="lazy" decoding="async">
+          </figure>
+          <div class="sg-room__body sg-reveal" style="--d:.2s">
+            <p class="sg-room__num">01</p>
+            <h3 class="sg-room__name">母屋<span class="sg-room__en">Omoya</span></h3>
+            <p class="sg-room__text">かつて商いを営んでいた母屋。吹き抜けの土間と、庭に面した座敷が続く、宿でいちばん大きな棟です。大人数でのご滞在にも。</p>
+            <dl class="sg-room__spec">
+              <div><dt>定員</dt><dd>2〜8名</dd></div>
+              <div><dt>広さ</dt><dd>約150㎡</dd></div>
+              <div><dt>設備</dt><dd>檜風呂・坪庭・キッチン</dd></div>
+            </dl>
+            <a class="sg-btn" href="#">詳しく見る</a>
+          </div>
+        </article>
+        <!-- 客室2 -->
+        <article class="sg-room">
+          <figure class="sg-room__photo sg-reveal sg-reveal--mask" data-sg-parallax>
+            <img src="/wp-content/uploads/sogetsuro/stay-02.jpg" alt="円窓から庭の緑を望む離れの客室" width="1800" height="1200" loading="lazy" decoding="async">
+          </figure>
+          <div class="sg-room__body sg-reveal" style="--d:.2s">
+            <p class="sg-room__num">02</p>
+            <h3 class="sg-room__name">離れ<span class="sg-room__en">Hanare</span></h3>
+            <p class="sg-room__text">庭の奥にひっそりと建つ離れ。円窓から緑を眺め、縁側で風にあたる。おふたりのための静かな一室です。</p>
+            <dl class="sg-room__spec">
+              <div><dt>定員</dt><dd>2〜3名</dd></div>
+              <div><dt>広さ</dt><dd>約45㎡</dd></div>
+              <div><dt>設備</dt><dd>半露天風呂・縁側</dd></div>
+            </dl>
+            <a class="sg-btn" href="#">詳しく見る</a>
+          </div>
+        </article>
+        <!-- 客室3 -->
+        <article class="sg-room">
+          <figure class="sg-room__photo sg-reveal sg-reveal--mask" data-sg-parallax>
+            <img src="/wp-content/uploads/sogetsuro/stay-03.jpg" alt="白壁の蔵を改装したメゾネットの客室" width="1800" height="1200" loading="lazy" decoding="async">
+          </figure>
+          <div class="sg-room__body sg-reveal" style="--d:.2s">
+            <p class="sg-room__num">03</p>
+            <h3 class="sg-room__name">蔵<span class="sg-room__en">Kura</span></h3>
+            <p class="sg-room__text">白壁の蔵を改装したメゾネット。厚い土壁に守られた、ひんやりと落ち着く空間で、読書や考えごとに没頭できます。</p>
+            <dl class="sg-room__spec">
+              <div><dt>定員</dt><dd>2〜4名</dd></div>
+              <div><dt>広さ</dt><dd>約60㎡</dd></div>
+              <div><dt>設備</dt><dd>シャワールーム・書斎</dd></div>
+            </dl>
+            <a class="sg-btn" href="#">詳しく見る</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 03 食べる ===== -->
+    <section class="sg-section sg-dining sg-dark" id="sg-dining">
+      <div class="sg-inner sg-dining__grid">
+        <div class="sg-heading sg-dining__heading sg-reveal">
+          <p class="sg-heading__en"><span class="sg-heading__num">03</span>Dining</p>
+          <h2 class="sg-heading__ja">食べる</h2>
+        </div>
+        <figure class="sg-dining__photo sg-dining__photo--main sg-reveal sg-reveal--mask" data-sg-parallax>
+          <img src="/wp-content/uploads/sogetsuro/dining-01.jpg" alt="囲炉裏を囲む夕食の風景" width="1800" height="1200" loading="lazy" decoding="async">
+        </figure>
+        <div class="sg-dining__body">
+          <p class="sg-catch sg-dining__catch sg-reveal sg-reveal--v">
+            <span class="sg-catch__line">土地の恵みを、</span>
+            <span class="sg-catch__line">囲炉裏端で。</span>
+          </p>
+          <div class="sg-dining__text sg-reveal" style="--d:.2s">
+            <p>朝の市場に揚がった魚、近くの畑で採れた野菜、町の蔵元が醸す酒。季節ごとに移ろう土地の味を、囲炉裏を囲んでゆっくりと味わう夕餉です。</p>
+            <p>朝は土鍋で炊いたごはんと、出汁の香るお味噌汁をご用意しています。</p>
+            <dl class="sg-dining__info">
+              <div><dt>夕食</dt><dd>18:00〜 / 19:30〜（二部制）</dd></div>
+              <div><dt>朝食</dt><dd>8:00〜9:30</dd></div>
+            </dl>
+            <a class="sg-btn sg-btn--light" href="#">お食事について</a>
+          </div>
+        </div>
+        <figure class="sg-dining__photo sg-dining__photo--sub sg-reveal sg-reveal--mask" style="--d:.2s">
+          <img src="/wp-content/uploads/sogetsuro/dining-02.jpg" alt="季節の食材を盛り付けた器" width="900" height="1200" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== 04 体験 ===== -->
+    <section class="sg-section sg-exp" id="sg-experience">
+      <div class="sg-inner sg-exp__head">
+        <div class="sg-heading sg-reveal">
+          <p class="sg-heading__en"><span class="sg-heading__num">04</span>Experience</p>
+          <h2 class="sg-heading__ja">体験</h2>
+        </div>
+        <p class="sg-exp__lead sg-reveal" style="--d:.2s">宿のまわりには、この町ならではの時間が流れています。季節や滞在の長さにあわせて、町とふれあうひとときをお選びください。</p>
+      </div>
+      <div class="sg-exp__scroller">
+        <ul class="sg-exp__list">
+          <li class="sg-card sg-reveal">
+            <figure class="sg-card__photo"><img src="/wp-content/uploads/sogetsuro/exp-01.jpg" alt="朝の路地を歩くガイドツアー" width="1000" height="1250" loading="lazy" decoding="async"></figure>
+            <p class="sg-card__num">01</p>
+            <h3 class="sg-card__title">朝の路地歩き</h3>
+            <p class="sg-card__text">人通りの少ない朝の町を、ガイドと一緒にゆっくり巡ります。</p>
+            <p class="sg-card__meta">所要 約60分</p>
+          </li>
+          <li class="sg-card sg-reveal" style="--d:.1s">
+            <figure class="sg-card__photo"><img src="/wp-content/uploads/sogetsuro/exp-02.jpg" alt="酒蔵に並ぶ仕込み樽" width="1000" height="1250" loading="lazy" decoding="async"></figure>
+            <p class="sg-card__num">02</p>
+            <h3 class="sg-card__title">蔵元めぐり</h3>
+            <p class="sg-card__text">町に残る酒蔵を訪ね、仕込み水と酒の飲み比べを楽しみます。</p>
+            <p class="sg-card__meta">所要 約90分</p>
+          </li>
+          <li class="sg-card sg-reveal" style="--d:.2s">
+            <figure class="sg-card__photo"><img src="/wp-content/uploads/sogetsuro/exp-03.jpg" alt="ろくろで器をつくる手元" width="1000" height="1250" loading="lazy" decoding="async"></figure>
+            <p class="sg-card__num">03</p>
+            <h3 class="sg-card__title">器づくり</h3>
+            <p class="sg-card__text">地元の作家に教わりながら、旅の記念となる器をつくります。</p>
+            <p class="sg-card__meta">所要 約120分</p>
+          </li>
+          <li class="sg-card sg-reveal" style="--d:.3s">
+            <figure class="sg-card__photo"><img src="/wp-content/uploads/sogetsuro/exp-04.jpg" alt="川沿いの道を走る自転車" width="1000" height="1250" loading="lazy" decoding="async"></figure>
+            <p class="sg-card__num">04</p>
+            <h3 class="sg-card__title">自転車さんぽ</h3>
+            <p class="sg-card__text">川沿いの道や田園の景色を、風を感じながらめぐります。</p>
+            <p class="sg-card__meta">貸出 1日</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 05 町を歩く ===== -->
+    <section class="sg-section sg-town" id="sg-town">
+      <div class="sg-town__visual">
+        <figure class="sg-town__photo" data-sg-parallax="0.15">
+          <img src="/wp-content/uploads/sogetsuro/town-01.jpg" alt="格子戸の家々が続く通り" width="2400" height="1200" loading="lazy" decoding="async">
+        </figure>
+        <p class="sg-catch sg-town__catch sg-reveal sg-reveal--v">
+          <span class="sg-catch__line">路地の先に、</span>
+          <span class="sg-catch__line">物語がある。</span>
+        </p>
+      </div>
+      <div class="sg-inner sg-town__body">
+        <div class="sg-heading sg-reveal">
+          <p class="sg-heading__en"><span class="sg-heading__num">05</span>Town</p>
+          <h2 class="sg-heading__ja">町を歩く</h2>
+        </div>
+        <div class="sg-town__text sg-reveal" style="--d:.2s">
+          <p>宿のまわりには、格子戸の続く通りや小さな社、昔ながらの商店が今も残っています。地図を持たずに歩くほど、この町の表情が見えてきます。</p>
+          <a class="sg-btn" href="#">エリアガイドを見る</a>
+        </div>
+      </div>
+      <div class="sg-marquee" data-sg-marquee>
+        <ul class="sg-marquee__track">
+          <li class="sg-marquee__item"><img src="/wp-content/uploads/sogetsuro/gallery-01.jpg" alt="町並みの風景1" width="900" height="1200" loading="lazy" decoding="async"></li>
+          <li class="sg-marquee__item"><img src="/wp-content/uploads/sogetsuro/gallery-02.jpg" alt="町並みの風景2" width="1200" height="800" loading="lazy" decoding="async"></li>
+          <li class="sg-marquee__item"><img src="/wp-content/uploads/sogetsuro/gallery-03.jpg" alt="町並みの風景3" width="900" height="1200" loading="lazy" decoding="async"></li>
+          <li class="sg-marquee__item"><img src="/wp-content/uploads/sogetsuro/gallery-04.jpg" alt="町並みの風景4" width="1200" height="800" loading="lazy" decoding="async"></li>
+          <li class="sg-marquee__item"><img src="/wp-content/uploads/sogetsuro/gallery-05.jpg" alt="町並みの風景5" width="900" height="1200" loading="lazy" decoding="async"></li>
+          <li class="sg-marquee__item"><img src="/wp-content/uploads/sogetsuro/gallery-06.jpg" alt="町並みの風景6" width="1200" height="800" loading="lazy" decoding="async"></li>
+          <li class="sg-marquee__item"><img src="/wp-content/uploads/sogetsuro/gallery-07.jpg" alt="町並みの風景7" width="900" height="1200" loading="lazy" decoding="async"></li>
+          <li class="sg-marquee__item"><img src="/wp-content/uploads/sogetsuro/gallery-08.jpg" alt="町並みの風景8" width="1200" height="800" loading="lazy" decoding="async"></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 06 アクセス ===== -->
+    <section class="sg-section sg-access" id="sg-access">
+      <div class="sg-inner">
+        <div class="sg-heading sg-reveal">
+          <p class="sg-heading__en"><span class="sg-heading__num">06</span>Access</p>
+          <h2 class="sg-heading__ja">アクセス</h2>
+        </div>
+        <div class="sg-access__grid">
+          <div class="sg-access__map sg-reveal">
+            <!-- ▼ Googleマップの「共有」→「地図を埋め込む」でコピーした <iframe> を、下の div と差し替えてください -->
+            <div class="sg-access__map-dummy">
+              <span class="sg-access__map-label">Map</span>
+              <span class="sg-access__map-note">Googleマップの埋め込みコードに差し替えてください</span>
+            </div>
+          </div>
+          <div class="sg-access__info sg-reveal" style="--d:.2s">
+            <p class="sg-access__name">SOGETSURO<span>古民家の宿</span></p>
+            <dl class="sg-access__list">
+              <div><dt>住所</dt><dd>〒000-0000<br>〇〇県〇〇市〇〇町0-00</dd></div>
+              <div><dt>電話</dt><dd><a href="tel:0000000000">0000-00-0000</a></dd></div>
+              <div><dt>チェックイン</dt><dd>15:00〜19:00</dd></div>
+              <div><dt>チェックアウト</dt><dd>〜11:00</dd></div>
+              <div><dt>電車</dt><dd>JR〇〇線「〇〇駅」より徒歩約10分</dd></div>
+              <div><dt>お車</dt><dd>〇〇ICより約15分／無料駐車場あり（3台）</dd></div>
+            </dl>
+            <a class="sg-link-arrow" href="https://www.google.com/maps" target="_blank" rel="noopener">Googleマップで見る</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ご予約 ===== -->
+    <section class="sg-reserve" id="sg-reserve">
+      <figure class="sg-reserve__bg" data-sg-parallax="0.2">
+        <img src="/wp-content/uploads/sogetsuro/reserve.jpg" alt="" width="2400" height="1400" loading="lazy" decoding="async">
+      </figure>
+      <div class="sg-reserve__inner sg-reveal">
+        <p class="sg-reserve__en">Reservation</p>
+        <h2 class="sg-reserve__title">ご予約・お問い合わせ</h2>
+        <p class="sg-reserve__text">空室状況の確認・ご予約はオンラインにて承っております。<br>お電話でのご相談もお気軽にどうぞ。</p>
+        <div class="sg-reserve__btns">
+          <a class="sg-btn sg-btn--fill" href="#" target="_blank" rel="noopener">空室検索・ご予約</a>
+          <a class="sg-btn sg-btn--light" href="tel:0000000000">お電話 0000-00-0000</a>
+        </div>
+        <p class="sg-reserve__note">お電話受付 9:00〜18:00（水曜定休）</p>
+      </div>
+    </section>
+
+  </div><!-- /.sg-main -->
+
+  <!-- フッター -->
+  <footer class="sg-footer">
+    <div class="sg-inner sg-footer__inner">
+      <div class="sg-footer__brand">
+        <svg class="sg-footer__mark" aria-hidden="true"><use href="#sg-emblem"></use></svg>
+        <p class="sg-footer__name">SOGETSURO</p>
+        <p class="sg-footer__sub">古民家の宿</p>
+      </div>
+      <div class="sg-footer__info">
+        <address class="sg-footer__address">〒000-0000 〇〇県〇〇市〇〇町0-00</address>
+        <p class="sg-footer__tel">TEL <a href="tel:0000000000">0000-00-0000</a></p>
+        <ul class="sg-footer__sns">
+          <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="#" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+      <nav class="sg-footer__nav" aria-label="フッターメニュー">
+        <ul>
+          <li><a href="#sg-concept">はじめに</a></li>
+          <li><a href="#sg-news">お知らせ</a></li>
+          <li><a href="#sg-stay">泊まる</a></li>
+          <li><a href="#sg-dining">食べる</a></li>
+          <li><a href="#sg-experience">体験</a></li>
+          <li><a href="#sg-town">町を歩く</a></li>
+          <li><a href="#sg-access">アクセス</a></li>
+          <li><a href="#sg-reserve">ご予約</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="sg-inner sg-footer__bottom">
+      <a class="sg-footer__policy" href="#">プライバシーポリシー</a>
+      <p class="sg-footer__copy"><small>&copy; <span data-sg-year>2026</span> SOGETSURO</small></p>
+    </div>
+  </footer>
+
+  <!-- ページトップ / スマホ用固定ボタン -->
+  <a class="sg-pagetop" href="#sg-top" aria-label="ページの先頭へ戻る"><span aria-hidden="true"></span></a>
+  <div class="sg-fixed-cta">
+    <a class="sg-fixed-cta__btn" href="tel:0000000000">電話</a>
+    <a class="sg-fixed-cta__btn" href="#sg-access">アクセス</a>
+    <a class="sg-fixed-cta__btn sg-fixed-cta__btn--primary" href="#sg-reserve">ご予約</a>
+  </div>
+</div>
+<!-- ========== SOGETSURO ここまで ========== -->
