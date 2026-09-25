@@ -14,6 +14,11 @@
  *  8. 画像のパララックス
  *  9. 流れるフォトギャラリー
  * 10. コピーライトの年
+ * 11. 記事の目次（自動生成）
+ * 12. 写真の拡大表示（ライトボックス）
+ * 13. 予約（Beds24）：検索条件を予約画面に渡す
+ * 14. SNSシェアボタン
+ * 15. デザイン確認用フォーム（静的版のみ）
  */
 (function () {
   'use strict';
@@ -26,6 +31,10 @@
     }
   }
 
+  function each(list, fn) {
+    Array.prototype.forEach.call(list, fn);
+  }
+
   ready(function () {
     var root = document.querySelector('.sg-site');
     if (!root || root.getAttribute('data-sg-init')) return;
@@ -33,7 +42,8 @@
 
     var html = document.documentElement;
     var header = root.querySelector('.sg-header');
-    var hero = root.querySelector('.sg-hero');
+    var mainHero = root.querySelector('.sg-hero');                 // トップの全画面メインビジュアル
+    var hero = root.querySelector('.sg-hero, .sg-page-hero');      // 下層ページの見出し画像も含む
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     html.classList.add('sg-js');
@@ -43,10 +53,15 @@
     initSplitText();
     initHeroHeight();
     initScrollState();
+    initToc();
     initSmoothScroll();
     initReveal();
     initParallax();
     initMarquee();
+    initLightbox();
+    initBeds24();
+    initShare();
+    initDemoForm();
     initYear();
     initLoader();
 
@@ -54,7 +69,7 @@
 
 
     /* ---------------------------------------------------------
-       1. ローディング
+       1. ローディング（トップページのみ）
        --------------------------------------------------------- */
     function initLoader() {
       var loader = root.querySelector('.sg-loader');
@@ -70,7 +85,7 @@
         } catch (e) { /* プライベートモード等では保存しない */ }
       }
 
-      // 2回目以降の表示・ローディングなしの場合はすぐに開始
+      // 2回目以降の表示・ローディングなしのページはすぐに開始
       if (!loader || html.classList.contains('sg-visited') || reduceMotion) {
         setTimeout(finish, 80);
         return;
@@ -103,18 +118,17 @@
 
     /* ---------------------------------------------------------
        2. ヘッダー（メインビジュアルを過ぎたら .is-past-hero）
+          見出し画像のないページ（記事など）は最初から白いヘッダー
        --------------------------------------------------------- */
     function initScrollState() {
       var ticking = false;
 
       function update() {
         ticking = false;
-        var past;
+        var past = true;
         if (hero) {
           var headerBottom = header ? header.getBoundingClientRect().bottom : 0;
           past = hero.getBoundingClientRect().bottom <= headerBottom + 1;
-        } else {
-          past = window.pageYOffset > 40;
         }
         root.classList.toggle('is-past-hero', past);
       }
@@ -135,7 +149,7 @@
     /* メインビジュアルを「実際に見えている画面の高さ」に合わせる
        （スマホのアドレスバーで下が隠れないように。CSSの --sg-hero-h） */
     function initHeroHeight() {
-      if (!hero) return;
+      if (!mainHero) return;
       var lastWidth = 0;
 
       function update() {
@@ -177,7 +191,7 @@
         } else {
           panel.setAttribute('inert', '');
         }
-        Array.prototype.forEach.call(behind, function (el) {
+        each(behind, function (el) {
           if (open) {
             el.setAttribute('inert', '');
           } else {
@@ -214,42 +228,59 @@
 
     /* ---------------------------------------------------------
        4. ページ内リンクのスムーススクロール
+          「#sg-access」「index.html#sg-access」「/#sg-access」など、
+          いま開いているページ内へのリンクだけをなめらかに移動します
        --------------------------------------------------------- */
     function initSmoothScroll() {
       root.addEventListener('click', function (e) {
-        var link = e.target.closest('a[href^="#"]');
+        var link = e.target.closest('a[href]');
         if (!link) return;
 
-        var hash = link.getAttribute('href');
         // href="#"（リンク先未設定）はページ先頭へ飛ばないようにする
-        if (hash === '#') {
+        if (link.getAttribute('href') === '#') {
           e.preventDefault();
           return;
         }
+        if (link.target === '_blank') return;
 
-        var target = document.getElementById(decodeURIComponent(hash.slice(1)));
+        var url = new URL(link.href, window.location.href);
+        if (url.origin !== window.location.origin) return;
+        if (pagePath(url.pathname) !== pagePath(window.location.pathname)) return;
+        if (url.search !== window.location.search) return;
+
+        var target = url.hash ? document.getElementById(decodeURIComponent(url.hash.slice(1))) : root;
         if (!target) return;
 
         e.preventDefault();
         drawer.close();
+        scrollToTarget(target);
+      });
+    }
 
-        var top = target.getBoundingClientRect().top + window.pageYOffset;
-        if (target !== hero) {
-          top -= headerOffset();
-        }
-        window.scrollTo({ top: Math.max(0, top), behavior: reduceMotion ? 'auto' : 'smooth' });
+    function pagePath(path) {
+      return path.replace(/index\.html?$/, '');
+    }
 
-        // キーボード操作の人のために、移動先にフォーカスを移す
+    function scrollToTarget(target) {
+      var top = 0;
+      if (target !== root) {
+        top = target.getBoundingClientRect().top + window.pageYOffset;
+        if (target !== hero) top -= headerOffset();
+      }
+      window.scrollTo({ top: Math.max(0, top), behavior: reduceMotion ? 'auto' : 'smooth' });
+
+      // キーボード操作の人のために、移動先にフォーカスを移す
+      if (target !== root) {
         if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
         target.focus({ preventScroll: true });
-      });
+      }
     }
 
     function headerOffset() {
       if (!header) return 0;
       var rect = header.getBoundingClientRect();
       // PCではスクロール後にヘッダーが 72px に縮むため、小さい方に合わせる
-      return rect.top + Math.min(rect.height, 72);
+      return rect.top + Math.min(rect.height, 72) + 16;
     }
 
 
@@ -259,7 +290,7 @@
     function initSplitText() {
       var counters = [];
 
-      Array.prototype.forEach.call(root.querySelectorAll('[data-sg-split]'), function (el) {
+      each(root.querySelectorAll('[data-sg-split]'), function (el) {
         var text = el.textContent.trim();
         if (!text) return;
 
@@ -390,7 +421,7 @@
       if (!items.length) return;
 
       if (reduceMotion || !('IntersectionObserver' in window)) {
-        Array.prototype.forEach.call(items, function (item) { item.classList.add('is-inview'); });
+        each(items, function (item) { item.classList.add('is-inview'); });
         return;
       }
 
@@ -403,7 +434,7 @@
         });
       }, { rootMargin: '0px 0px -10% 0px', threshold: 0 });
 
-      Array.prototype.forEach.call(items, function (item) { observer.observe(item); });
+      each(items, function (item) { observer.observe(item); });
     }
 
 
@@ -452,14 +483,14 @@
     function initMarquee() {
       if (reduceMotion) return;
 
-      Array.prototype.forEach.call(root.querySelectorAll('[data-sg-marquee]'), function (marquee) {
+      each(root.querySelectorAll('[data-sg-marquee]'), function (marquee) {
         var track = marquee.querySelector('.sg-marquee__track');
         if (!track) return;
 
         Array.prototype.slice.call(track.children).forEach(function (item) {
           var clone = item.cloneNode(true);
           clone.setAttribute('aria-hidden', 'true');
-          Array.prototype.forEach.call(clone.querySelectorAll('img'), function (img) {
+          each(clone.querySelectorAll('img'), function (img) {
             img.setAttribute('alt', '');
           });
           track.appendChild(clone);
@@ -469,7 +500,7 @@
         // 近づいたら画像をまとめて読み込む（流れてきた写真が白く抜けないように）
         var images = track.querySelectorAll('img');
         var loadAll = function () {
-          Array.prototype.forEach.call(images, function (img) { img.loading = 'eager'; });
+          each(images, function (img) { img.loading = 'eager'; });
         };
         if ('IntersectionObserver' in window) {
           var observer = new IntersectionObserver(function (entries) {
@@ -490,8 +521,225 @@
        10. コピーライトの年を自動更新
        --------------------------------------------------------- */
     function initYear() {
-      Array.prototype.forEach.call(root.querySelectorAll('[data-sg-year]'), function (el) {
+      each(root.querySelectorAll('[data-sg-year]'), function (el) {
         el.textContent = String(new Date().getFullYear());
+      });
+    }
+
+
+    /* ---------------------------------------------------------
+       11. 記事の目次（大見出し h2・小見出し h3 から自動で作成）
+          <div class="sg-toc" data-sg-toc hidden> を置くだけで動きます
+       --------------------------------------------------------- */
+    function initToc() {
+      each(root.querySelectorAll('[data-sg-toc]'), function (toc) {
+        var article = toc.closest('.sg-article') || root;
+        var body = article.querySelector('.sg-article__body');
+        var list = toc.querySelector('.sg-toc__list');
+        if (!body || !list) return;
+
+        var count = 0;
+        each(body.querySelectorAll('h2, h3'), function (heading) {
+          var text = heading.textContent.trim();
+          if (!text) return;
+          count += 1;
+          if (!heading.id) heading.id = 'sg-toc-' + count;
+
+          var item = document.createElement('li');
+          item.className = 'sg-toc__item sg-toc__item--' + heading.tagName.toLowerCase();
+          var link = document.createElement('a');
+          link.href = '#' + heading.id;
+          link.textContent = text;
+          item.appendChild(link);
+          list.appendChild(item);
+        });
+
+        // 見出しが2つ以上あるときだけ表示
+        if (count >= 2) toc.removeAttribute('hidden');
+      });
+    }
+
+
+    /* ---------------------------------------------------------
+       12. 写真の拡大表示（data-sg-lightbox の中のリンク）
+          <a href="大きい写真のURL" data-caption="説明"><img ...></a>
+       --------------------------------------------------------- */
+    function initLightbox() {
+      var groups = root.querySelectorAll('[data-sg-lightbox]');
+      if (!groups.length) return;
+
+      function make(tag, className, attrs) {
+        var node = document.createElement(tag);
+        if (className) node.className = className;
+        Object.keys(attrs || {}).forEach(function (key) { node.setAttribute(key, attrs[key]); });
+        return node;
+      }
+
+      var box = make('div', 'sg-lightbox', { role: 'dialog', 'aria-modal': 'true', 'aria-label': '写真の拡大表示' });
+      var closeBtn = make('button', 'sg-lightbox__close', { type: 'button', 'aria-label': '閉じる' });
+      var prevBtn = make('button', 'sg-lightbox__prev', { type: 'button', 'aria-label': '前の写真' });
+      var nextBtn = make('button', 'sg-lightbox__next', { type: 'button', 'aria-label': '次の写真' });
+      var figure = make('figure', 'sg-lightbox__figure');
+      var img = make('img', 'sg-lightbox__img', { alt: '' });
+      var caption = make('figcaption', 'sg-lightbox__caption');
+      var counter = make('p', 'sg-lightbox__count');
+      figure.appendChild(img);
+      figure.appendChild(caption);
+      [closeBtn, prevBtn, nextBtn, figure, counter].forEach(function (node) { box.appendChild(node); });
+      box.hidden = true;
+      root.appendChild(box);
+
+      var items = [];
+      var index = 0;
+      var lastFocus = null;
+      var touchX = null;
+
+      function show(i) {
+        index = (i + items.length) % items.length;
+        var link = items[index];
+        var thumb = link.querySelector('img');
+        img.src = link.getAttribute('href');
+        img.alt = thumb ? thumb.alt : '';
+        caption.textContent = link.getAttribute('data-caption') || img.alt;
+        counter.textContent = (index + 1) + ' / ' + items.length;
+        prevBtn.hidden = items.length < 2;
+        nextBtn.hidden = items.length < 2;
+      }
+
+      function open(list, i) {
+        items = list;
+        lastFocus = document.activeElement;
+        show(i);
+        box.hidden = false;
+        requestAnimationFrame(function () { box.classList.add('is-open'); });
+        html.style.overflow = 'hidden';
+        closeBtn.focus({ preventScroll: true });
+      }
+
+      function close() {
+        box.classList.remove('is-open');
+        html.style.overflow = '';
+        setTimeout(function () { box.hidden = true; }, 400);
+        if (lastFocus) lastFocus.focus({ preventScroll: true });
+      }
+
+      each(groups, function (group) {
+        group.addEventListener('click', function (e) {
+          var link = e.target.closest('a');
+          if (!link) return;
+          e.preventDefault();
+          var list = Array.prototype.slice.call(group.querySelectorAll('a'));
+          open(list, list.indexOf(link));
+        });
+      });
+
+      closeBtn.addEventListener('click', close);
+      prevBtn.addEventListener('click', function () { show(index - 1); });
+      nextBtn.addEventListener('click', function () { show(index + 1); });
+      box.addEventListener('click', function (e) {
+        if (e.target === box) close();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (box.hidden) return;
+        if (e.key === 'Escape' || e.key === 'Esc') close();
+        if (e.key === 'ArrowLeft') show(index - 1);
+        if (e.key === 'ArrowRight') show(index + 1);
+      });
+
+      // スマホ：左右にスワイプで写真を切り替え
+      box.addEventListener('touchstart', function (e) {
+        touchX = e.changedTouches[0].clientX;
+      }, { passive: true });
+      box.addEventListener('touchend', function (e) {
+        if (touchX === null) return;
+        var diff = e.changedTouches[0].clientX - touchX;
+        touchX = null;
+        if (Math.abs(diff) < 50) return;
+        show(diff > 0 ? index - 1 : index + 1);
+      });
+    }
+
+
+    /* ---------------------------------------------------------
+       13. 予約（Beds24）
+          空室検索フォーム（data-sg-search）で選んだ日付・人数を、
+          予約画面の iframe（data-sg-beds24）に引き継ぎます
+       --------------------------------------------------------- */
+    function initBeds24() {
+      var KEYS = ['checkin', 'checkout', 'numnight', 'numadult', 'numchild', 'roomid', 'lang'];
+      var params = new URLSearchParams(window.location.search);
+
+      each(root.querySelectorAll('iframe[data-sg-beds24]'), function (frame) {
+        var src = frame.getAttribute('src');
+        if (!src) return;
+        var url = new URL(src, window.location.href);
+        var changed = false;
+        KEYS.forEach(function (key) {
+          var value = params.get(key);
+          if (value) {
+            url.searchParams.set(key, value);
+            changed = true;
+          }
+        });
+        if (changed) frame.setAttribute('src', url.toString());
+      });
+
+      var today = new Date();
+      var min = today.getFullYear() + '-' + pad2(today.getMonth() + 1) + '-' + pad2(today.getDate());
+
+      each(root.querySelectorAll('form[data-sg-search]'), function (form) {
+        each(form.querySelectorAll('input[type="date"]'), function (input) { input.min = min; });
+        KEYS.forEach(function (key) {
+          var field = form.elements[key];
+          var value = params.get(key);
+          if (field) {
+            if (value) field.value = value;
+          }
+        });
+      });
+
+      function pad2(num) {
+        return (num < 10 ? '0' : '') + num;
+      }
+    }
+
+
+    /* ---------------------------------------------------------
+       14. SNSシェアボタン（data-sg-share="x / facebook / line"）
+          href="#" のときだけ、今のページのURLを入れます
+       --------------------------------------------------------- */
+    function initShare() {
+      var pageUrl = window.location.href.split('#')[0];
+      var bases = {
+        x: ['https://twitter.com/intent/tweet', 'url', 'text'],
+        facebook: ['https://www.facebook.com/sharer/sharer.php', 'u', ''],
+        line: ['https://social-plugins.line.me/lineit/share', 'url', '']
+      };
+
+      each(root.querySelectorAll('[data-sg-share]'), function (link) {
+        if (link.getAttribute('href') !== '#') return;
+        var base = bases[link.getAttribute('data-sg-share')];
+        if (!base) return;
+        var url = new URL(base[0]);
+        url.searchParams.set(base[1], pageUrl);
+        if (base[2]) url.searchParams.set(base[2], document.title);
+        link.href = url.toString();
+      });
+    }
+
+
+    /* ---------------------------------------------------------
+       15. デザイン確認用フォーム（静的版のみ・実際には送信しません）
+          WordPress では Contact Form 7 のフォームに置き換わります
+       --------------------------------------------------------- */
+    function initDemoForm() {
+      each(root.querySelectorAll('form[data-sg-demo-form]'), function (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var note = form.querySelector('.sg-form__demo-note');
+          if (note) note.hidden = false;
+        });
       });
     }
   });

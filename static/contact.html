@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>お問い合わせ｜SOGETSURO 古民家の宿</title>
+  <meta name="description" content="古民家の宿 SOGETSURO へのお問い合わせはこちら。ご宿泊・お食事・体験・取材などのご相談を承ります。">
+  <meta name="theme-color" content="#211e1b">
+  <!-- OGP（公開時は og:url / og:image を実際のURLに変更してください） -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SOGETSURO">
+  <meta property="og:title" content="お問い合わせ｜SOGETSURO 古民家の宿">
+  <meta property="og:description" content="古民家の宿 SOGETSURO へのお問い合わせはこちら。ご宿泊・お食事・体験・取材などのご相談を承ります。">
+  <meta property="og:url" content="https://example.com/contact.html">
+  <meta property="og:image" content="https://example.com/assets/img/page-contact.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <!-- Webフォント（Shippori Mincho / Cormorant Garamond） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&amp;family=Shippori+Mincho:wght@400;500;600&amp;display=swap">
+  <!-- 色・フォントの設定（settings.css）→ 全体のスタイル（style.css）の順に読み込みます -->
+  <link rel="stylesheet" href="assets/css/settings.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="sg-body">
+
+<!-- ========== SOGETSURO ここから ========== -->
+<div class="sg-site" id="sg-site">
+  <script>(function(d){d.documentElement.classList.add('sg-js');try{if(sessionStorage.getItem('sg-visited')){d.documentElement.classList.add('sg-visited');}}catch(e){}})(document);</script>
+
+  <!-- sg:header ここから（全ページ共通。tools/build.py で他のページにもコピーされます） -->
+  <!-- ロゴマーク（円窓）※ヘッダー・フッター・ローディングで使い回しています -->
+  <svg class="sg-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="sg-emblem" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="22.5" fill="none" stroke="currentColor" stroke-width="1"/>
+      <path fill="none" stroke="currentColor" stroke-width="1" d="M16 2.97V45.03M24 1.5V46.5M32 2.97V45.03M2.62 31H45.38"/>
+    </symbol>
+  </svg>
+
+  <!-- ヘッダー -->
+  <header class="sg-header">
+    <div class="sg-header__inner">
+      <a class="sg-header__logo" href="index.html" aria-label="SOGETSURO トップページへ">
+        <svg class="sg-header__mark" aria-hidden="true"><use href="#sg-emblem"></use></svg>
+        <span class="sg-header__name">SOGETSURO</span>
+        <span class="sg-header__sub">古民家の宿</span>
+      </a>
+      <nav class="sg-gnav" aria-label="メインメニュー">
+        <ul class="sg-gnav__list">
+          <li><a href="index.html#sg-concept">はじめに</a></li>
+          <li><a href="index.html#sg-stay">泊まる</a></li>
+          <li><a href="index.html#sg-dining">食べる</a></li>
+          <li><a href="index.html#sg-experience">体験</a></li>
+          <li><a href="journal.html">よみもの</a></li>
+          <li><a href="index.html#sg-access">アクセス</a></li>
+        </ul>
+      </nav>
+      <a class="sg-header__reserve" href="reserve.html"><span class="sg-header__reserve-en">Reserve</span><span class="sg-header__reserve-ja">ご予約</span></a>
+      <button class="sg-menu-btn" type="button" aria-expanded="false" aria-controls="sg-drawer" aria-label="メニューを開く">
+        <span class="sg-menu-btn__lines" aria-hidden="true"><span></span><span></span></span>
+        <span class="sg-menu-btn__text" aria-hidden="true">Menu</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- メニュー（ハンバーガーで開くパネル） -->
+  <div class="sg-drawer" id="sg-drawer" inert>
+    <div class="sg-drawer__visual" aria-hidden="true">
+      <img src="assets/img/menu.jpg" alt="" width="1200" height="1600" loading="lazy" decoding="async">
+    </div>
+    <div class="sg-drawer__body">
+      <nav class="sg-drawer__nav" aria-label="サイトメニュー">
+        <ul class="sg-drawer__list">
+          <li><a href="index.html"><span class="sg-drawer__en">Top</span><span class="sg-drawer__ja">トップ</span></a></li>
+          <li><a href="index.html#sg-concept"><span class="sg-drawer__en">Concept</span><span class="sg-drawer__ja">はじめに</span></a></li>
+          <li><a href="index.html#sg-stay"><span class="sg-drawer__en">Stay</span><span class="sg-drawer__ja">泊まる</span></a></li>
+          <li><a href="index.html#sg-dining"><span class="sg-drawer__en">Dining</span><span class="sg-drawer__ja">食べる</span></a></li>
+          <li><a href="index.html#sg-experience"><span class="sg-drawer__en">Experience</span><span class="sg-drawer__ja">体験</span></a></li>
+          <li><a href="index.html#sg-town"><span class="sg-drawer__en">Town</span><span class="sg-drawer__ja">町を歩く</span></a></li>
+          <li><a href="journal.html"><span class="sg-drawer__en">Journal</span><span class="sg-drawer__ja">よみもの</span></a></li>
+          <li><a href="index.html#sg-access"><span class="sg-drawer__en">Access</span><span class="sg-drawer__ja">アクセス</span></a></li>
+          <li><a href="reserve.html"><span class="sg-drawer__en">Reservation</span><span class="sg-drawer__ja">ご予約</span></a></li>
+          <li><a href="contact.html"><span class="sg-drawer__en">Contact</span><span class="sg-drawer__ja">お問い合わせ</span></a></li>
+        </ul>
+      </nav>
+      <div class="sg-drawer__info">
+        <a class="sg-btn sg-btn--light" href="reserve.html">空室検索・ご予約</a>
+        <p class="sg-drawer__tel">TEL <a href="tel:0000000000">0000-00-0000</a></p>
+        <ul class="sg-drawer__sns">
+          <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="#" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- /sg:header ここまで -->
+
+  <main class="sg-main">
+
+    <!-- ===== 見出し画像 ===== -->
+    <section class="sg-page-hero sg-page-hero--s">
+      <figure class="sg-page-hero__bg" data-sg-parallax="0.12">
+        <img src="assets/img/page-contact.jpg" alt="" width="2400" height="1200" fetchpriority="high" decoding="async">
+      </figure>
+      <div class="sg-page-hero__inner sg-reveal">
+        <p class="sg-page-hero__en">Contact</p>
+        <h1 class="sg-page-hero__title">お問い合わせ</h1>
+      </div>
+    </section>
+
+    <!-- パンくずリスト -->
+    <nav class="sg-breadcrumb" aria-label="現在地">
+      <ol class="sg-inner">
+        <li><a href="index.html">トップ</a></li>
+        <li><span aria-current="page">お問い合わせ</span></li>
+      </ol>
+    </nav>
+
+    <!-- ===== お問い合わせ ===== -->
+    <section class="sg-section sg-section--tight sg-contact">
+      <div class="sg-inner sg-contact__grid">
+        <div class="sg-contact__side sg-reveal">
+          <p class="sg-contact__lead">ご宿泊・お食事・体験・取材などに関するお問い合わせは、こちらのフォームよりお送りください。3営業日以内に担当者よりご連絡いたします。</p>
+          <div class="sg-telbox">
+            <p class="sg-telbox__label">お電話でのお問い合わせ</p>
+            <p class="sg-telbox__num"><a href="tel:0000000000">0000-00-0000</a></p>
+            <p class="sg-telbox__note">受付 9:00〜18:00（水曜定休）</p>
+          </div>
+          <ul class="sg-contact__links">
+            <li><a class="sg-link-arrow" href="reserve.html">ご予約はこちら</a></li>
+            <li><a class="sg-link-arrow" href="#sg-faq">よくあるご質問</a></li>
+          </ul>
+        </div>
+
+        <div class="sg-contact__main sg-reveal" style="--d:.15s">
+          <!-- sg:wp <div class="sg-form">[contact-form-7 id="ここにフォームID" title="お問い合わせ"]</div> -->
+          <!-- ▼ デザイン確認用のフォーム（WordPress では Contact Form 7 のフォームに置き換わります） -->
+          <form class="sg-form" action="#" method="post" data-sg-demo-form>
+            <p class="sg-form__intro"><span class="sg-form__req">必須</span> の項目は必ずご入力ください。</p>
+            <div class="sg-form__rows">
+              <div class="sg-form__row">
+                <p class="sg-form__label">お問い合わせの種類<span class="sg-form__req">必須</span></p>
+                <div class="sg-form__field">
+                  <span class="wpcf7-form-control wpcf7-radio">
+                    <span class="wpcf7-list-item first"><label><input type="radio" name="inquiry-type" value="ご宿泊について" checked><span class="wpcf7-list-item-label">ご宿泊について</span></label></span>
+                    <span class="wpcf7-list-item"><label><input type="radio" name="inquiry-type" value="お食事・体験について"><span class="wpcf7-list-item-label">お食事・体験について</span></label></span>
+                    <span class="wpcf7-list-item"><label><input type="radio" name="inquiry-type" value="取材・撮影について"><span class="wpcf7-list-item-label">取材・撮影について</span></label></span>
+                    <span class="wpcf7-list-item last"><label><input type="radio" name="inquiry-type" value="その他"><span class="wpcf7-list-item-label">その他</span></label></span>
+                  </span>
+                </div>
+              </div>
+              <div class="sg-form__row">
+                <label class="sg-form__label" for="sg-f-name">お名前<span class="sg-form__req">必須</span></label>
+                <div class="sg-form__field"><input type="text" id="sg-f-name" name="your-name" autocomplete="name" placeholder="例）山田 花子" required></div>
+              </div>
+              <div class="sg-form__row">
+                <label class="sg-form__label" for="sg-f-kana">フリガナ<span class="sg-form__opt">任意</span></label>
+                <div class="sg-form__field"><input type="text" id="sg-f-kana" name="your-kana" placeholder="例）ヤマダ ハナコ"></div>
+              </div>
+              <div class="sg-form__row">
+                <label class="sg-form__label" for="sg-f-email">メールアドレス<span class="sg-form__req">必須</span></label>
+                <div class="sg-form__field"><input type="email" id="sg-f-email" name="your-email" autocomplete="email" placeholder="例）info@example.com" required></div>
+              </div>
+              <div class="sg-form__row">
+                <label class="sg-form__label" for="sg-f-tel">電話番号<span class="sg-form__opt">任意</span></label>
+                <div class="sg-form__field"><input type="tel" id="sg-f-tel" name="your-tel" autocomplete="tel" placeholder="例）000-0000-0000"></div>
+              </div>
+              <div class="sg-form__row">
+                <label class="sg-form__label" for="sg-f-date">ご宿泊予定日<span class="sg-form__opt">任意</span></label>
+                <div class="sg-form__field">
+                  <input type="date" id="sg-f-date" name="stay-date">
+                  <p class="sg-form__help">ご宿泊についてのお問い合わせの場合はご入力ください。</p>
+                </div>
+              </div>
+              <div class="sg-form__row">
+                <label class="sg-form__label" for="sg-f-guests">ご人数<span class="sg-form__opt">任意</span></label>
+                <div class="sg-form__field"><select id="sg-f-guests" name="guests"><option value="">選択してください</option><option>1名</option><option>2名</option><option>3名</option><option>4名</option><option>5名</option><option>6名</option><option>7名</option><option>8名</option><option>9名以上</option></select></div>
+              </div>
+              <div class="sg-form__row">
+                <label class="sg-form__label" for="sg-f-message">お問い合わせ内容<span class="sg-form__req">必須</span></label>
+                <div class="sg-form__field"><textarea id="sg-f-message" name="your-message" rows="8" placeholder="ご質問やご要望をご記入ください。" required></textarea></div>
+              </div>
+            </div>
+            <div class="sg-form__accept">
+              <span class="wpcf7-form-control wpcf7-acceptance"><span class="wpcf7-list-item"><label><input type="checkbox" name="privacy" value="1" required><span class="wpcf7-list-item-label"><a href="#" target="_blank" rel="noopener">プライバシーポリシー</a>に同意する</span></label></span></span>
+            </div>
+            <div class="sg-form__submit"><input type="submit" value="送信する"></div>
+            <p class="sg-form__demo-note" hidden>このフォームはデザイン確認用のため、送信されません。WordPress では Contact Form 7 のフォームに置き換わります。</p>
+          </form>
+          <!-- /sg:wp -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== よくあるご質問 ===== -->
+    <section class="sg-section sg-section--tight sg-section--sub" id="sg-faq">
+      <div class="sg-inner">
+        <div class="sg-section-head">
+          <div class="sg-heading sg-heading--s sg-reveal">
+            <p class="sg-heading__en">FAQ</p>
+            <h2 class="sg-heading__ja">よくあるご質問</h2>
+          </div>
+          <p class="sg-section-head__lead sg-reveal" style="--d:.2s">お問い合わせの前に、よくいただくご質問をご覧ください。</p>
+        </div>
+        <div class="sg-faq sg-reveal">
+          <details class="sg-faq__item">
+            <summary class="sg-faq__q">チェックイン・チェックアウトの時間を教えてください。</summary>
+            <div class="sg-faq__a"><p>チェックインは15:00〜19:00、チェックアウトは11:00までです。19:00以降のご到着となる場合は、事前にお電話でお知らせください。</p></div>
+          </details>
+          <details class="sg-faq__item">
+            <summary class="sg-faq__q">駐車場はありますか。</summary>
+            <div class="sg-faq__a"><p>無料の駐車場を3台分ご用意しています。大きめのお車でお越しの場合は、事前にご相談ください。</p></div>
+          </details>
+          <details class="sg-faq__item">
+            <summary class="sg-faq__q">小さな子ども連れでも泊まれますか。</summary>
+            <div class="sg-faq__a"><p>はい、お子さま連れのお客さまも歓迎しています。ベビーベッドの貸し出しもございます（数に限りがあります）。</p></div>
+          </details>
+          <details class="sg-faq__item">
+            <summary class="sg-faq__q">ペットと一緒に泊まれますか。</summary>
+            <div class="sg-faq__a"><p>申し訳ございませんが、建物保護のため、ペットを連れてのご宿泊はお受けしておりません。</p></div>
+          </details>
+          <details class="sg-faq__item">
+            <summary class="sg-faq__q">食物アレルギーに対応してもらえますか。</summary>
+            <div class="sg-faq__a"><p>ご予約の際にお知らせいただければ、できる範囲で対応いたします。詳しくはお問い合わせください。</p></div>
+          </details>
+          <details class="sg-faq__item">
+            <summary class="sg-faq__q">キャンセル料はかかりますか。</summary>
+            <div class="sg-faq__a"><p>ご宿泊日の6日前から所定のキャンセル料がかかります。詳しくは<a href="reserve.html#sg-policy">ご予約ページのご利用案内</a>をご覧ください。</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- sg:footer ここから（全ページ共通。tools/build.py で他のページにもコピーされます） -->
+  <footer class="sg-footer">
+    <div class="sg-inner sg-footer__inner">
+      <div class="sg-footer__brand">
+        <svg class="sg-footer__mark" aria-hidden="true"><use href="#sg-emblem"></use></svg>
+        <p class="sg-footer__name">SOGETSURO</p>
+        <p class="sg-footer__sub">古民家の宿</p>
+      </div>
+      <div class="sg-footer__info">
+        <address class="sg-footer__address">〒000-0000 〇〇県〇〇市〇〇町0-00</address>
+        <p class="sg-footer__tel">TEL <a href="tel:0000000000">0000-00-0000</a></p>
+        <ul class="sg-footer__sns">
+          <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="#" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+      <nav class="sg-footer__nav" aria-label="フッターメニュー">
+        <ul>
+          <li><a href="index.html#sg-concept">はじめに</a></li>
+          <li><a href="index.html#sg-stay">泊まる</a></li>
+          <li><a href="index.html#sg-dining">食べる</a></li>
+          <li><a href="index.html#sg-experience">体験</a></li>
+          <li><a href="index.html#sg-town">町を歩く</a></li>
+          <li><a href="journal.html">よみもの</a></li>
+          <li><a href="index.html#sg-access">アクセス</a></li>
+          <li><a href="reserve.html">ご予約</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="sg-inner sg-footer__bottom">
+      <a class="sg-footer__policy" href="#">プライバシーポリシー</a>
+      <p class="sg-footer__copy"><small>&copy; <span data-sg-year>2026</span> SOGETSURO</small></p>
+    </div>
+  </footer>
+
+  <!-- ページトップ / スマホ用固定ボタン -->
+  <a class="sg-pagetop" href="#sg-site" aria-label="ページの先頭へ戻る"><span aria-hidden="true"></span></a>
+  <div class="sg-fixed-cta">
+    <a class="sg-fixed-cta__btn" href="tel:0000000000">電話</a>
+    <a class="sg-fixed-cta__btn" href="index.html#sg-access">アクセス</a>
+    <a class="sg-fixed-cta__btn sg-fixed-cta__btn--primary" href="reserve.html">ご予約</a>
+  </div>
+  <!-- /sg:footer ここまで -->
+</div>
+<!-- ========== SOGETSURO ここまで ========== -->
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!--
+  SOGETSURO ─ お問い合わせ
+  ・固定ページの「カスタムHTML」ブロックに、このファイルの中身をすべて貼り付けてください。
+  ・ページのテンプレートは「SOGETSURO 共通レイアウト」を選んでください。
+  ・スラッグ（URL）: 「contact」
+  ・画像は /wp-content/uploads/sogetsuro/ にアップロードしてある前提です。
+-->
+<!-- ===== 見出し画像 ===== -->
+<section class="sg-page-hero sg-page-hero--s">
+  <figure class="sg-page-hero__bg" data-sg-parallax="0.12">
+    <img src="/wp-content/uploads/sogetsuro/page-contact.jpg" alt="" width="2400" height="1200" fetchpriority="high" decoding="async">
+  </figure>
+  <div class="sg-page-hero__inner sg-reveal">
+    <p class="sg-page-hero__en">Contact</p>
+    <h1 class="sg-page-hero__title">お問い合わせ</h1>
+  </div>
+</section>
+
+<!-- パンくずリスト -->
+<nav class="sg-breadcrumb" aria-label="現在地">
+  <ol class="sg-inner">
+    <li><a href="/">トップ</a></li>
+    <li><span aria-current="page">お問い合わせ</span></li>
+  </ol>
+</nav>
+
+<!-- ===== お問い合わせ ===== -->
+<section class="sg-section sg-section--tight sg-contact">
+  <div class="sg-inner sg-contact__grid">
+    <div class="sg-contact__side sg-reveal">
+      <p class="sg-contact__lead">ご宿泊・お食事・体験・取材などに関するお問い合わせは、こちらのフォームよりお送りください。3営業日以内に担当者よりご連絡いたします。</p>
+      <div class="sg-telbox">
+        <p class="sg-telbox__label">お電話でのお問い合わせ</p>
+        <p class="sg-telbox__num"><a href="tel:0000000000">0000-00-0000</a></p>
+        <p class="sg-telbox__note">受付 9:00〜18:00（水曜定休）</p>
+      </div>
+      <ul class="sg-contact__links">
+        <li><a class="sg-link-arrow" href="/reserve/">ご予約はこちら</a></li>
+        <li><a class="sg-link-arrow" href="#sg-faq">よくあるご質問</a></li>
+      </ul>
+    </div>
+
+    <div class="sg-contact__main sg-reveal" style="--d:.15s">
+      <div class="sg-form">[contact-form-7 id="ここにフォームID" title="お問い合わせ"]</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== よくあるご質問 ===== -->
+<section class="sg-section sg-section--tight sg-section--sub" id="sg-faq">
+  <div class="sg-inner">
+    <div class="sg-section-head">
+      <div class="sg-heading sg-heading--s sg-reveal">
+        <p class="sg-heading__en">FAQ</p>
+        <h2 class="sg-heading__ja">よくあるご質問</h2>
+      </div>
+      <p class="sg-section-head__lead sg-reveal" style="--d:.2s">お問い合わせの前に、よくいただくご質問をご覧ください。</p>
+    </div>
+    <div class="sg-faq sg-reveal">
+      <details class="sg-faq__item">
+        <summary class="sg-faq__q">チェックイン・チェックアウトの時間を教えてください。</summary>
+        <div class="sg-faq__a"><p>チェックインは15:00〜19:00、チェックアウトは11:00までです。19:00以降のご到着となる場合は、事前にお電話でお知らせください。</p></div>
+      </details>
+      <details class="sg-faq__item">
+        <summary class="sg-faq__q">駐車場はありますか。</summary>
+        <div class="sg-faq__a"><p>無料の駐車場を3台分ご用意しています。大きめのお車でお越しの場合は、事前にご相談ください。</p></div>
+      </details>
+      <details class="sg-faq__item">
+        <summary class="sg-faq__q">小さな子ども連れでも泊まれますか。</summary>
+        <div class="sg-faq__a"><p>はい、お子さま連れのお客さまも歓迎しています。ベビーベッドの貸し出しもございます（数に限りがあります）。</p></div>
+      </details>
+      <details class="sg-faq__item">
+        <summary class="sg-faq__q">ペットと一緒に泊まれますか。</summary>
+        <div class="sg-faq__a"><p>申し訳ございませんが、建物保護のため、ペットを連れてのご宿泊はお受けしておりません。</p></div>
+      </details>
+      <details class="sg-faq__item">
+        <summary class="sg-faq__q">食物アレルギーに対応してもらえますか。</summary>
+        <div class="sg-faq__a"><p>ご予約の際にお知らせいただければ、できる範囲で対応いたします。詳しくはお問い合わせください。</p></div>
+      </details>
+      <details class="sg-faq__item">
+        <summary class="sg-faq__q">キャンセル料はかかりますか。</summary>
+        <div class="sg-faq__a"><p>ご宿泊日の6日前から所定のキャンセル料がかかります。詳しくは<a href="/reserve/#sg-policy">ご予約ページのご利用案内</a>をご覧ください。</p></div>
+      </details>
+    </div>
+  </div>
+</section>

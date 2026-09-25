@@ -19,60 +19,17 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&amp;family=Shippori+Mincho:wght@400;500;600&amp;display=swap">
+  <!-- 色・フォントの設定（settings.css）→ 全体のスタイル（style.css）の順に読み込みます -->
+  <link rel="stylesheet" href="assets/css/settings.css">
   <link rel="stylesheet" href="assets/css/style.css">
-  <!-- ▼ 設定：色・フォント・余白（ここを書き換えるとサイト全体に反映されます） -->
-  <style id="sogetsuro-settings">
-  .sg-site {
-    /* カラー */
-    --sg-c-bg: #f4f1ea;          /* 背景（生成り） */
-    --sg-c-bg-sub: #ebe5da;      /* 背景・サブ（お知らせ・町を歩く） */
-    --sg-c-text: #2b2724;        /* 文字（墨） */
-    --sg-c-text-sub: #6f675d;    /* 文字・サブ（補足・見出しの日本語） */
-    --sg-c-accent: #8b3d2c;      /* アクセント（弁柄）：番号・予約ボタン */
-    --sg-c-line: rgba(43, 39, 36, 0.16);       /* 罫線 */
-    --sg-c-dark: #211e1b;        /* 暗い背景（食べる・メニュー・フッター） */
-    --sg-c-dark-text: #ece6da;   /* 暗い背景の上の文字 */
-    --sg-c-dark-accent: #c49a6c; /* 暗い背景の上のアクセント（金茶） */
-    --sg-c-dark-line: rgba(236, 230, 218, 0.18);
-    /* 配色サンプル（上の値と差し替えるだけで雰囲気が変わります）
-       藍  : --sg-c-bg:#f1f2ef; --sg-c-bg-sub:#e4e7e6; --sg-c-text:#1f2a33; --sg-c-accent:#2d4a64; --sg-c-dark:#162029;
-       松葉: --sg-c-bg:#f2f1e9; --sg-c-bg-sub:#e5e5d8; --sg-c-text:#262a23; --sg-c-accent:#4d6647; --sg-c-dark:#1c211a;
-       墨  : --sg-c-bg:#f5f5f3; --sg-c-bg-sub:#e9e9e6; --sg-c-text:#222222; --sg-c-accent:#555555; --sg-c-dark:#1a1a1a; */
-
-    /* フォント */
-    --sg-f-ja: "Shippori Mincho", "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-    --sg-f-en: "Cormorant Garamond", "Shippori Mincho", "Times New Roman", serif;
-
-    /* レイアウト */
-    --sg-w-inner: 1200px;        /* コンテンツの最大幅 */
-    --sg-gutter: 20px;           /* 画面端の余白（スマホ） */
-    --sg-header-h: 64px;         /* ヘッダーの高さ（スマホ） */
-    --sg-sec-space: 96px;        /* セクション上下の余白（スマホ） */
-    --sg-ease: cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  @media (min-width: 768px) {
-    .sg-site { --sg-gutter: 40px; --sg-sec-space: 140px; }
-  }
-  @media (min-width: 1024px) {
-    .sg-site { --sg-gutter: 56px; --sg-header-h: 88px; --sg-sec-space: 180px; }
-  }
-  </style>
 </head>
 <body class="sg-body">
 
 <!-- ========== SOGETSURO ここから ========== -->
-<div class="sg-site" id="sg-site">
+<div class="sg-site sg-site--intro" id="sg-site">
   <script>(function(d){d.documentElement.classList.add('sg-js');try{if(sessionStorage.getItem('sg-visited')){d.documentElement.classList.add('sg-visited');}}catch(e){}})(document);</script>
 
-  <!-- ロゴマーク（円窓）※ヘッダー・フッター等で使い回しています -->
-  <svg class="sg-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-    <symbol id="sg-emblem" viewBox="0 0 48 48">
-      <circle cx="24" cy="24" r="22.5" fill="none" stroke="currentColor" stroke-width="1"/>
-      <path fill="none" stroke="currentColor" stroke-width="1" d="M16 2.97V45.03M24 1.5V46.5M32 2.97V45.03M2.62 31H45.38"/>
-    </symbol>
-  </svg>
-
-  <!-- ローディング -->
+  <!-- ローディング（トップページのみ） -->
   <div class="sg-loader" aria-hidden="true">
     <div class="sg-loader__inner">
       <svg class="sg-loader__mark"><use href="#sg-emblem"></use></svg>
@@ -80,25 +37,34 @@
     </div>
   </div>
 
+  <!-- sg:header ここから（全ページ共通。tools/build.py で他のページにもコピーされます） -->
+  <!-- ロゴマーク（円窓）※ヘッダー・フッター・ローディングで使い回しています -->
+  <svg class="sg-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="sg-emblem" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="22.5" fill="none" stroke="currentColor" stroke-width="1"/>
+      <path fill="none" stroke="currentColor" stroke-width="1" d="M16 2.97V45.03M24 1.5V46.5M32 2.97V45.03M2.62 31H45.38"/>
+    </symbol>
+  </svg>
+
   <!-- ヘッダー -->
   <header class="sg-header">
     <div class="sg-header__inner">
-      <a class="sg-header__logo" href="#sg-top" aria-label="SOGETSURO ページの先頭へ">
+      <a class="sg-header__logo" href="index.html" aria-label="SOGETSURO トップページへ">
         <svg class="sg-header__mark" aria-hidden="true"><use href="#sg-emblem"></use></svg>
         <span class="sg-header__name">SOGETSURO</span>
         <span class="sg-header__sub">古民家の宿</span>
       </a>
       <nav class="sg-gnav" aria-label="メインメニュー">
         <ul class="sg-gnav__list">
-          <li><a href="#sg-concept">はじめに</a></li>
-          <li><a href="#sg-stay">泊まる</a></li>
-          <li><a href="#sg-dining">食べる</a></li>
-          <li><a href="#sg-experience">体験</a></li>
-          <li><a href="#sg-town">町を歩く</a></li>
-          <li><a href="#sg-access">アクセス</a></li>
+          <li><a href="index.html#sg-concept">はじめに</a></li>
+          <li><a href="index.html#sg-stay">泊まる</a></li>
+          <li><a href="index.html#sg-dining">食べる</a></li>
+          <li><a href="index.html#sg-experience">体験</a></li>
+          <li><a href="journal.html">よみもの</a></li>
+          <li><a href="index.html#sg-access">アクセス</a></li>
         </ul>
       </nav>
-      <a class="sg-header__reserve" href="#sg-reserve"><span class="sg-header__reserve-en">Reserve</span><span class="sg-header__reserve-ja">ご予約</span></a>
+      <a class="sg-header__reserve" href="reserve.html"><span class="sg-header__reserve-en">Reserve</span><span class="sg-header__reserve-ja">ご予約</span></a>
       <button class="sg-menu-btn" type="button" aria-expanded="false" aria-controls="sg-drawer" aria-label="メニューを開く">
         <span class="sg-menu-btn__lines" aria-hidden="true"><span></span><span></span></span>
         <span class="sg-menu-btn__text" aria-hidden="true">Menu</span>
@@ -114,18 +80,20 @@
     <div class="sg-drawer__body">
       <nav class="sg-drawer__nav" aria-label="サイトメニュー">
         <ul class="sg-drawer__list">
-          <li><a href="#sg-top"><span class="sg-drawer__en">Top</span><span class="sg-drawer__ja">トップ</span></a></li>
-          <li><a href="#sg-concept"><span class="sg-drawer__en">Concept</span><span class="sg-drawer__ja">はじめに</span></a></li>
-          <li><a href="#sg-news"><span class="sg-drawer__en">News</span><span class="sg-drawer__ja">お知らせ</span></a></li>
-          <li><a href="#sg-stay"><span class="sg-drawer__en">Stay</span><span class="sg-drawer__ja">泊まる</span></a></li>
-          <li><a href="#sg-dining"><span class="sg-drawer__en">Dining</span><span class="sg-drawer__ja">食べる</span></a></li>
-          <li><a href="#sg-experience"><span class="sg-drawer__en">Experience</span><span class="sg-drawer__ja">体験</span></a></li>
-          <li><a href="#sg-town"><span class="sg-drawer__en">Town</span><span class="sg-drawer__ja">町を歩く</span></a></li>
-          <li><a href="#sg-access"><span class="sg-drawer__en">Access</span><span class="sg-drawer__ja">アクセス</span></a></li>
+          <li><a href="index.html"><span class="sg-drawer__en">Top</span><span class="sg-drawer__ja">トップ</span></a></li>
+          <li><a href="index.html#sg-concept"><span class="sg-drawer__en">Concept</span><span class="sg-drawer__ja">はじめに</span></a></li>
+          <li><a href="index.html#sg-stay"><span class="sg-drawer__en">Stay</span><span class="sg-drawer__ja">泊まる</span></a></li>
+          <li><a href="index.html#sg-dining"><span class="sg-drawer__en">Dining</span><span class="sg-drawer__ja">食べる</span></a></li>
+          <li><a href="index.html#sg-experience"><span class="sg-drawer__en">Experience</span><span class="sg-drawer__ja">体験</span></a></li>
+          <li><a href="index.html#sg-town"><span class="sg-drawer__en">Town</span><span class="sg-drawer__ja">町を歩く</span></a></li>
+          <li><a href="journal.html"><span class="sg-drawer__en">Journal</span><span class="sg-drawer__ja">よみもの</span></a></li>
+          <li><a href="index.html#sg-access"><span class="sg-drawer__en">Access</span><span class="sg-drawer__ja">アクセス</span></a></li>
+          <li><a href="reserve.html"><span class="sg-drawer__en">Reservation</span><span class="sg-drawer__ja">ご予約</span></a></li>
+          <li><a href="contact.html"><span class="sg-drawer__en">Contact</span><span class="sg-drawer__ja">お問い合わせ</span></a></li>
         </ul>
       </nav>
       <div class="sg-drawer__info">
-        <a class="sg-btn sg-btn--light" href="#sg-reserve">空室検索・ご予約</a>
+        <a class="sg-btn sg-btn--light" href="reserve.html">空室検索・ご予約</a>
         <p class="sg-drawer__tel">TEL <a href="tel:0000000000">0000-00-0000</a></p>
         <ul class="sg-drawer__sns">
           <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
@@ -134,6 +102,7 @@
       </div>
     </div>
   </div>
+  <!-- /sg:header ここまで -->
 
   <main class="sg-main">
 
@@ -196,30 +165,34 @@
           <p class="sg-heading__en">News</p>
           <h2 class="sg-heading__ja">お知らせ</h2>
         </div>
+        <!-- sg:wp [sogetsuro_news count="3" category="news"] -->
         <ul class="sg-news__list sg-reveal" style="--d:.15s">
           <li class="sg-news__item">
-            <a href="#">
+            <a href="journal-article.html">
               <time class="sg-news__date" datetime="2026-09-01">2026.09.01</time>
               <span class="sg-news__cat">お知らせ</span>
               <span class="sg-news__title">秋の町歩きプランのご予約受付を開始しました</span>
             </a>
           </li>
           <li class="sg-news__item">
-            <a href="#">
+            <a href="journal-article.html">
               <time class="sg-news__date" datetime="2026-08-10">2026.08.10</time>
               <span class="sg-news__cat">メディア</span>
               <span class="sg-news__title">雑誌「〇〇〇〇」秋号にてご紹介いただきました</span>
             </a>
           </li>
           <li class="sg-news__item">
-            <a href="#">
+            <a href="journal-article.html">
               <time class="sg-news__date" datetime="2026-07-25">2026.07.25</time>
               <span class="sg-news__cat">営業案内</span>
               <span class="sg-news__title">年末年始の営業日についてのご案内</span>
             </a>
           </li>
         </ul>
-        <a class="sg-link-arrow sg-news__more" href="#">一覧を見る</a>
+        <!-- /sg:wp -->
+        <!-- sg:wp <a class="sg-link-arrow sg-news__more" href="/category/news/">一覧を見る</a> -->
+        <a class="sg-link-arrow sg-news__more" href="journal.html">一覧を見る</a>
+        <!-- /sg:wp -->
       </div>
     </section>
 
@@ -248,7 +221,7 @@
               <div><dt>広さ</dt><dd>約150㎡</dd></div>
               <div><dt>設備</dt><dd>檜風呂・坪庭・キッチン</dd></div>
             </dl>
-            <a class="sg-btn" href="#">詳しく見る</a>
+            <a class="sg-btn" href="stay-omoya.html">詳しく見る</a>
           </div>
         </article>
         <!-- 客室2 -->
@@ -265,7 +238,7 @@
               <div><dt>広さ</dt><dd>約45㎡</dd></div>
               <div><dt>設備</dt><dd>半露天風呂・縁側</dd></div>
             </dl>
-            <a class="sg-btn" href="#">詳しく見る</a>
+            <a class="sg-btn" href="stay-hanare.html">詳しく見る</a>
           </div>
         </article>
         <!-- 客室3 -->
@@ -282,7 +255,7 @@
               <div><dt>広さ</dt><dd>約60㎡</dd></div>
               <div><dt>設備</dt><dd>シャワールーム・書斎</dd></div>
             </dl>
-            <a class="sg-btn" href="#">詳しく見る</a>
+            <a class="sg-btn" href="stay-kura.html">詳しく見る</a>
           </div>
         </article>
       </div>
@@ -380,7 +353,7 @@
         </div>
         <div class="sg-town__text sg-reveal" style="--d:.2s">
           <p>宿のまわりには、格子戸の続く通りや小さな社、昔ながらの商店が今も残っています。地図を持たずに歩くほど、この町の表情が見えてきます。</p>
-          <a class="sg-btn" href="#">エリアガイドを見る</a>
+          <a class="sg-btn" href="journal.html">町のよみものへ</a>
         </div>
       </div>
       <div class="sg-marquee" data-sg-marquee>
@@ -397,11 +370,55 @@
       </div>
     </section>
 
-    <!-- ===== 06 アクセス ===== -->
+    <!-- ===== 06 よみもの（記事の新着） ===== -->
+    <section class="sg-section sg-journal" id="sg-journal">
+      <div class="sg-inner">
+        <div class="sg-section-head">
+          <div class="sg-heading sg-reveal">
+            <p class="sg-heading__en"><span class="sg-heading__num">06</span>Journal</p>
+            <h2 class="sg-heading__ja">町のよみもの</h2>
+          </div>
+          <p class="sg-section-head__lead sg-reveal" style="--d:.2s">宿のまわりの町のこと、季節のこと。スタッフが歩いて集めた小さな話を、記事にしてお届けしています。</p>
+        </div>
+        <!-- sg:wp [sogetsuro_journal count="3" exclude="news"] -->
+        <div class="sg-post-grid">
+          <article class="sg-post-card sg-reveal">
+            <a class="sg-post-card__link" href="journal-article.html">
+              <figure class="sg-post-card__img"><img src="assets/img/journal-01.jpg" alt="" width="1600" height="1067" loading="lazy" decoding="async"></figure>
+              <p class="sg-post-meta"><span class="sg-post-meta__cat">町歩き</span><time datetime="2026-09-20">2026.09.20</time></p>
+              <h3 class="sg-post-card__title">朝七時の路地で出会った、町のいつもの風景</h3>
+              <p class="sg-post-card__excerpt">観光のお客さんが歩きはじめる前の、静かな朝の路地。スタッフが毎朝歩いている散歩道をご紹介します。</p>
+            </a>
+          </article>
+          <article class="sg-post-card sg-reveal" style="--d:.1s">
+            <a class="sg-post-card__link" href="journal-article.html">
+              <figure class="sg-post-card__img"><img src="assets/img/journal-02.jpg" alt="" width="1600" height="1067" loading="lazy" decoding="async"></figure>
+              <p class="sg-post-meta"><span class="sg-post-meta__cat">食と酒</span><time datetime="2026-09-12">2026.09.12</time></p>
+              <h3 class="sg-post-card__title">蔵元の仕込み水をたどって、川沿いを歩く</h3>
+              <p class="sg-post-card__excerpt">町に残る酒蔵の多くは、同じ川の水を使っています。水の流れに沿って、蔵をめぐる半日の散歩へ。</p>
+            </a>
+          </article>
+          <article class="sg-post-card sg-reveal" style="--d:.2s">
+            <a class="sg-post-card__link" href="journal-article.html">
+              <figure class="sg-post-card__img"><img src="assets/img/journal-03.jpg" alt="" width="1600" height="1067" loading="lazy" decoding="async"></figure>
+              <p class="sg-post-meta"><span class="sg-post-meta__cat">手仕事</span><time datetime="2026-09-03">2026.09.03</time></p>
+              <h3 class="sg-post-card__title">器の町の小さな工房を訪ねて</h3>
+              <p class="sg-post-card__excerpt">宿の食卓で使っている器の作り手に会いに行きました。土と向き合う、静かな仕事場のお話です。</p>
+            </a>
+          </article>
+        </div>
+        <!-- /sg:wp -->
+        <div class="sg-journal__more sg-reveal">
+          <a class="sg-btn" href="journal.html">記事の一覧を見る</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 07 アクセス ===== -->
     <section class="sg-section sg-access" id="sg-access">
       <div class="sg-inner">
         <div class="sg-heading sg-reveal">
-          <p class="sg-heading__en"><span class="sg-heading__num">06</span>Access</p>
+          <p class="sg-heading__en"><span class="sg-heading__num">07</span>Access</p>
           <h2 class="sg-heading__ja">アクセス</h2>
         </div>
         <div class="sg-access__grid">
@@ -436,10 +453,43 @@
       <div class="sg-reserve__inner sg-reveal">
         <p class="sg-reserve__en">Reservation</p>
         <h2 class="sg-reserve__title">ご予約・お問い合わせ</h2>
-        <p class="sg-reserve__text">空室状況の確認・ご予約はオンラインにて承っております。<br>お電話でのご相談もお気軽にどうぞ。</p>
-        <div class="sg-reserve__btns">
-          <a class="sg-btn sg-btn--fill" href="#" target="_blank" rel="noopener">空室検索・ご予約</a>
-          <a class="sg-btn sg-btn--light" href="tel:0000000000">お電話 0000-00-0000</a>
+        <p class="sg-reserve__text">日付と人数を選んで、空室状況をご確認いただけます。<br>お電話でのご相談もお気軽にどうぞ。</p>
+        <!-- 空室検索：選んだ条件を「ご予約」ページの予約画面（Beds24）に引き継ぎます -->
+        <form class="sg-search sg-search--dark sg-reserve__search" action="reserve.html#sg-booking" method="get" data-sg-search>
+          <div class="sg-search__field sg-search__field--date">
+            <label for="sg-top-checkin">チェックイン</label>
+            <input type="date" id="sg-top-checkin" name="checkin" required>
+          </div>
+          <div class="sg-search__field">
+            <label for="sg-top-numnight">泊数</label>
+            <select id="sg-top-numnight" name="numnight">
+              <option value="1">1泊</option>
+              <option value="2">2泊</option>
+              <option value="3">3泊</option>
+              <option value="4">4泊</option>
+              <option value="5">5泊</option>
+              <option value="6">6泊</option>
+              <option value="7">7泊</option>
+            </select>
+          </div>
+          <div class="sg-search__field">
+            <label for="sg-top-numadult">大人</label>
+            <select id="sg-top-numadult" name="numadult">
+              <option value="1">1名</option>
+              <option value="2" selected>2名</option>
+              <option value="3">3名</option>
+              <option value="4">4名</option>
+              <option value="5">5名</option>
+              <option value="6">6名</option>
+              <option value="7">7名</option>
+              <option value="8">8名</option>
+            </select>
+          </div>
+          <button class="sg-search__submit" type="submit">空室を検索</button>
+        </form>
+        <div class="sg-reserve__sub">
+          <a href="tel:0000000000">お電話 0000-00-0000</a>
+          <a href="contact.html">お問い合わせフォーム</a>
         </div>
         <p class="sg-reserve__note">お電話受付 9:00〜18:00（水曜定休）</p>
       </div>
@@ -447,7 +497,7 @@
 
   </main>
 
-  <!-- フッター -->
+  <!-- sg:footer ここから（全ページ共通。tools/build.py で他のページにもコピーされます） -->
   <footer class="sg-footer">
     <div class="sg-inner sg-footer__inner">
       <div class="sg-footer__brand">
@@ -465,14 +515,15 @@
       </div>
       <nav class="sg-footer__nav" aria-label="フッターメニュー">
         <ul>
-          <li><a href="#sg-concept">はじめに</a></li>
-          <li><a href="#sg-news">お知らせ</a></li>
-          <li><a href="#sg-stay">泊まる</a></li>
-          <li><a href="#sg-dining">食べる</a></li>
-          <li><a href="#sg-experience">体験</a></li>
-          <li><a href="#sg-town">町を歩く</a></li>
-          <li><a href="#sg-access">アクセス</a></li>
-          <li><a href="#sg-reserve">ご予約</a></li>
+          <li><a href="index.html#sg-concept">はじめに</a></li>
+          <li><a href="index.html#sg-stay">泊まる</a></li>
+          <li><a href="index.html#sg-dining">食べる</a></li>
+          <li><a href="index.html#sg-experience">体験</a></li>
+          <li><a href="index.html#sg-town">町を歩く</a></li>
+          <li><a href="journal.html">よみもの</a></li>
+          <li><a href="index.html#sg-access">アクセス</a></li>
+          <li><a href="reserve.html">ご予約</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
         </ul>
       </nav>
     </div>
@@ -483,12 +534,13 @@
   </footer>
 
   <!-- ページトップ / スマホ用固定ボタン -->
-  <a class="sg-pagetop" href="#sg-top" aria-label="ページの先頭へ戻る"><span aria-hidden="true"></span></a>
+  <a class="sg-pagetop" href="#sg-site" aria-label="ページの先頭へ戻る"><span aria-hidden="true"></span></a>
   <div class="sg-fixed-cta">
     <a class="sg-fixed-cta__btn" href="tel:0000000000">電話</a>
-    <a class="sg-fixed-cta__btn" href="#sg-access">アクセス</a>
-    <a class="sg-fixed-cta__btn sg-fixed-cta__btn--primary" href="#sg-reserve">ご予約</a>
+    <a class="sg-fixed-cta__btn" href="index.html#sg-access">アクセス</a>
+    <a class="sg-fixed-cta__btn sg-fixed-cta__btn--primary" href="reserve.html">ご予約</a>
   </div>
+  <!-- /sg:footer ここまで -->
 </div>
 <!-- ========== SOGETSURO ここまで ========== -->
 

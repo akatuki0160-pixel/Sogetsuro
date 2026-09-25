@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ご予約｜SOGETSURO 古民家の宿</title>
+  <meta name="description" content="古民家の宿 SOGETSURO のご予約ページ。空室検索からご予約・お支払いまでオンラインで完了します。">
+  <meta name="theme-color" content="#211e1b">
+  <!-- OGP（公開時は og:url / og:image を実際のURLに変更してください） -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SOGETSURO">
+  <meta property="og:title" content="ご予約｜SOGETSURO 古民家の宿">
+  <meta property="og:description" content="古民家の宿 SOGETSURO のご予約ページ。空室検索からご予約・お支払いまでオンラインで完了します。">
+  <meta property="og:url" content="https://example.com/reserve.html">
+  <meta property="og:image" content="https://example.com/assets/img/page-reserve.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <!-- Webフォント（Shippori Mincho / Cormorant Garamond） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&amp;family=Shippori+Mincho:wght@400;500;600&amp;display=swap">
+  <!-- 色・フォントの設定（settings.css）→ 全体のスタイル（style.css）の順に読み込みます -->
+  <link rel="stylesheet" href="assets/css/settings.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="sg-body">
+
+<!-- ========== SOGETSURO ここから ========== -->
+<div class="sg-site" id="sg-site">
+  <script>(function(d){d.documentElement.classList.add('sg-js');try{if(sessionStorage.getItem('sg-visited')){d.documentElement.classList.add('sg-visited');}}catch(e){}})(document);</script>
+
+  <!-- sg:header ここから（全ページ共通。tools/build.py で他のページにもコピーされます） -->
+  <!-- ロゴマーク（円窓）※ヘッダー・フッター・ローディングで使い回しています -->
+  <svg class="sg-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="sg-emblem" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="22.5" fill="none" stroke="currentColor" stroke-width="1"/>
+      <path fill="none" stroke="currentColor" stroke-width="1" d="M16 2.97V45.03M24 1.5V46.5M32 2.97V45.03M2.62 31H45.38"/>
+    </symbol>
+  </svg>
+
+  <!-- ヘッダー -->
+  <header class="sg-header">
+    <div class="sg-header__inner">
+      <a class="sg-header__logo" href="index.html" aria-label="SOGETSURO トップページへ">
+        <svg class="sg-header__mark" aria-hidden="true"><use href="#sg-emblem"></use></svg>
+        <span class="sg-header__name">SOGETSURO</span>
+        <span class="sg-header__sub">古民家の宿</span>
+      </a>
+      <nav class="sg-gnav" aria-label="メインメニュー">
+        <ul class="sg-gnav__list">
+          <li><a href="index.html#sg-concept">はじめに</a></li>
+          <li><a href="index.html#sg-stay">泊まる</a></li>
+          <li><a href="index.html#sg-dining">食べる</a></li>
+          <li><a href="index.html#sg-experience">体験</a></li>
+          <li><a href="journal.html">よみもの</a></li>
+          <li><a href="index.html#sg-access">アクセス</a></li>
+        </ul>
+      </nav>
+      <a class="sg-header__reserve" href="reserve.html"><span class="sg-header__reserve-en">Reserve</span><span class="sg-header__reserve-ja">ご予約</span></a>
+      <button class="sg-menu-btn" type="button" aria-expanded="false" aria-controls="sg-drawer" aria-label="メニューを開く">
+        <span class="sg-menu-btn__lines" aria-hidden="true"><span></span><span></span></span>
+        <span class="sg-menu-btn__text" aria-hidden="true">Menu</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- メニュー（ハンバーガーで開くパネル） -->
+  <div class="sg-drawer" id="sg-drawer" inert>
+    <div class="sg-drawer__visual" aria-hidden="true">
+      <img src="assets/img/menu.jpg" alt="" width="1200" height="1600" loading="lazy" decoding="async">
+    </div>
+    <div class="sg-drawer__body">
+      <nav class="sg-drawer__nav" aria-label="サイトメニュー">
+        <ul class="sg-drawer__list">
+          <li><a href="index.html"><span class="sg-drawer__en">Top</span><span class="sg-drawer__ja">トップ</span></a></li>
+          <li><a href="index.html#sg-concept"><span class="sg-drawer__en">Concept</span><span class="sg-drawer__ja">はじめに</span></a></li>
+          <li><a href="index.html#sg-stay"><span class="sg-drawer__en">Stay</span><span class="sg-drawer__ja">泊まる</span></a></li>
+          <li><a href="index.html#sg-dining"><span class="sg-drawer__en">Dining</span><span class="sg-drawer__ja">食べる</span></a></li>
+          <li><a href="index.html#sg-experience"><span class="sg-drawer__en">Experience</span><span class="sg-drawer__ja">体験</span></a></li>
+          <li><a href="index.html#sg-town"><span class="sg-drawer__en">Town</span><span class="sg-drawer__ja">町を歩く</span></a></li>
+          <li><a href="journal.html"><span class="sg-drawer__en">Journal</span><span class="sg-drawer__ja">よみもの</span></a></li>
+          <li><a href="index.html#sg-access"><span class="sg-drawer__en">Access</span><span class="sg-drawer__ja">アクセス</span></a></li>
+          <li><a href="reserve.html"><span class="sg-drawer__en">Reservation</span><span class="sg-drawer__ja">ご予約</span></a></li>
+          <li><a href="contact.html"><span class="sg-drawer__en">Contact</span><span class="sg-drawer__ja">お問い合わせ</span></a></li>
+        </ul>
+      </nav>
+      <div class="sg-drawer__info">
+        <a class="sg-btn sg-btn--light" href="reserve.html">空室検索・ご予約</a>
+        <p class="sg-drawer__tel">TEL <a href="tel:0000000000">0000-00-0000</a></p>
+        <ul class="sg-drawer__sns">
+          <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="#" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- /sg:header ここまで -->
+
+  <main class="sg-main">
+
+    <!-- ===== 見出し画像 ===== -->
+    <section class="sg-page-hero">
+      <figure class="sg-page-hero__bg" data-sg-parallax="0.12">
+        <img src="assets/img/page-reserve.jpg" alt="" width="2400" height="1200" fetchpriority="high" decoding="async">
+      </figure>
+      <div class="sg-page-hero__inner sg-reveal">
+        <p class="sg-page-hero__en">Reservation</p>
+        <h1 class="sg-page-hero__title">ご予約</h1>
+        <p class="sg-page-hero__lead">オンライン予約で、空室の確認からお支払いまでその場で完了します。</p>
+      </div>
+    </section>
+
+    <!-- パンくずリスト -->
+    <nav class="sg-breadcrumb" aria-label="現在地">
+      <ol class="sg-inner">
+        <li><a href="index.html">トップ</a></li>
+        <li><span aria-current="page">ご予約</span></li>
+      </ol>
+    </nav>
+
+    <!-- ===== 空室を探す ===== -->
+    <section class="sg-section sg-section--tight" id="sg-search">
+      <div class="sg-inner">
+        <div class="sg-section-head">
+          <div class="sg-heading sg-heading--s sg-reveal">
+            <p class="sg-heading__en">Search</p>
+            <h2 class="sg-heading__ja">空室を探す</h2>
+          </div>
+          <p class="sg-section-head__lead sg-reveal" style="--d:.2s">チェックイン日と人数を選んで「空室を検索」を押すと、下の予約画面に空室状況が表示されます。</p>
+        </div>
+        <form class="sg-search" action="reserve.html#sg-booking" method="get" data-sg-search>
+          <div class="sg-search__field sg-search__field--date">
+            <label for="sg-rs-checkin">チェックイン</label>
+            <input type="date" id="sg-rs-checkin" name="checkin" required>
+          </div>
+          <div class="sg-search__field">
+            <label for="sg-rs-numnight">泊数</label>
+            <select id="sg-rs-numnight" name="numnight">
+              <option value="1">1泊</option>
+              <option value="2">2泊</option>
+              <option value="3">3泊</option>
+              <option value="4">4泊</option>
+              <option value="5">5泊</option>
+              <option value="6">6泊</option>
+              <option value="7">7泊</option>
+            </select>
+          </div>
+          <div class="sg-search__field">
+            <label for="sg-rs-numadult">大人</label>
+            <select id="sg-rs-numadult" name="numadult">
+              <option value="1">1名</option>
+              <option value="2" selected>2名</option>
+              <option value="3">3名</option>
+              <option value="4">4名</option>
+              <option value="5">5名</option>
+              <option value="6">6名</option>
+              <option value="7">7名</option>
+              <option value="8">8名</option>
+            </select>
+          </div>
+          <div class="sg-search__field">
+            <label for="sg-rs-numchild">子ども</label>
+            <select id="sg-rs-numchild" name="numchild">
+              <option value="0">0名</option>
+              <option value="1">1名</option>
+              <option value="2">2名</option>
+              <option value="3">3名</option>
+              <option value="4">4名</option>
+              <option value="5">5名</option>
+              <option value="6">6名</option>
+            </select>
+          </div>
+          <button class="sg-search__submit" type="submit">空室を検索</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== 予約画面（Beds24） ===== -->
+    <section class="sg-section sg-section--tight sg-section--sub" id="sg-booking">
+      <div class="sg-inner">
+        <div class="sg-section-head">
+          <div class="sg-heading sg-heading--s sg-reveal">
+            <p class="sg-heading__en">Booking</p>
+            <h2 class="sg-heading__ja">オンライン予約</h2>
+          </div>
+          <p class="sg-section-head__lead sg-reveal" style="--d:.2s">客室とプランを選んで、そのままご予約いただけます。ご予約が確定すると、確認メールが届きます。</p>
+        </div>
+        <!-- sg:wp [sogetsuro_beds24] -->
+        <!-- ▼ Beds24 の予約画面。「propid=00000」の数字を、Beds24 の物件ID（Property ID）に書き換えてください -->
+        <div class="sg-booking">
+          <p class="sg-booking__loading">予約画面を読み込んでいます…</p>
+          <iframe class="sg-booking__frame" src="https://beds24.com/booking2.php?propid=00000&amp;referer=iFrame&amp;lang=ja" title="オンライン予約（Beds24）" loading="lazy" data-sg-beds24></iframe>
+        </div>
+        <p class="sg-booking__fallback">予約画面が表示されない場合は、<a href="https://beds24.com/booking2.php?propid=00000&amp;lang=ja" target="_blank" rel="noopener">こちら（別ウィンドウ）</a>からご予約ください。</p>
+        <!-- /sg:wp -->
+      </div>
+    </section>
+
+    <!-- ===== 宿泊プラン ===== -->
+    <section class="sg-section sg-section--tight" id="sg-plan">
+      <div class="sg-inner">
+        <div class="sg-section-head">
+          <div class="sg-heading sg-heading--s sg-reveal">
+            <p class="sg-heading__en">Plan</p>
+            <h2 class="sg-heading__ja">宿泊プラン</h2>
+          </div>
+          <p class="sg-section-head__lead sg-reveal" style="--d:.2s">滞在のしかたに合わせて、3つのプランをご用意しています。</p>
+        </div>
+        <div class="sg-plans__list">
+          <article class="sg-plan sg-reveal">
+            <figure class="sg-plan__img"><img src="assets/img/plan-01.jpg" alt="" width="1200" height="800" loading="lazy" decoding="async"></figure>
+            <div class="sg-plan__body">
+              <p class="sg-plan__label">Plan 01</p>
+              <h3 class="sg-plan__name">素泊まりプラン</h3>
+              <p class="sg-plan__price"><strong>¥16,000</strong>〜 ／ 1名（2名利用時）</p>
+              <p class="sg-plan__text">お食事なしで、自由に町を楽しみたい方に。キッチン付きの棟では、市場で買った食材で自炊も楽しめます。</p>
+              <ul class="sg-plan__list sg-dots"><li>チェックイン 15:00 ／ アウト 11:00</li><li>手描きの町歩きマップ付き</li></ul>
+              <a class="sg-btn" href="#sg-booking">このプランで予約</a>
+            </div>
+          </article>
+          <article class="sg-plan sg-reveal" style="--d:0.1s">
+            <figure class="sg-plan__img"><img src="assets/img/plan-02.jpg" alt="" width="1200" height="800" loading="lazy" decoding="async"></figure>
+            <div class="sg-plan__body">
+              <p class="sg-plan__label">Plan 02</p>
+              <h3 class="sg-plan__name">朝食付きプラン</h3>
+              <p class="sg-plan__price"><strong>¥19,000</strong>〜 ／ 1名（2名利用時）</p>
+              <p class="sg-plan__text">土鍋で炊いたごはんと、出汁の香るお味噌汁の朝食付き。いちばん人気のプランです。</p>
+              <ul class="sg-plan__list sg-dots"><li>朝食 8:00〜9:30</li><li>手描きの町歩きマップ付き</li></ul>
+              <a class="sg-btn" href="#sg-booking">このプランで予約</a>
+            </div>
+          </article>
+          <article class="sg-plan sg-reveal" style="--d:0.2s">
+            <figure class="sg-plan__img"><img src="assets/img/plan-03.jpg" alt="" width="1200" height="800" loading="lazy" decoding="async"></figure>
+            <div class="sg-plan__body">
+              <p class="sg-plan__label">Plan 03</p>
+              <h3 class="sg-plan__name">夕朝食付きプラン</h3>
+              <p class="sg-plan__price"><strong>¥28,000</strong>〜 ／ 1名（2名利用時）</p>
+              <p class="sg-plan__text">囲炉裏を囲む夕食と朝食の付いた、宿の味を存分に楽しめるプランです。</p>
+              <ul class="sg-plan__list sg-dots"><li>夕食 18:00〜 または 19:30〜</li><li>地酒の飲み比べ付き</li></ul>
+              <a class="sg-btn" href="#sg-booking">このプランで予約</a>
+            </div>
+          </article>
+        </div>
+        <p class="sg-note">※料金は目安です。時期・人数・客室により変わります。</p>
+      </div>
+    </section>
+
+    <!-- ===== ご予約の流れ ===== -->
+    <section class="sg-section sg-section--tight sg-section--sub">
+      <div class="sg-inner">
+        <div class="sg-section-head">
+          <div class="sg-heading sg-heading--s sg-reveal">
+            <p class="sg-heading__en">Flow</p>
+            <h2 class="sg-heading__ja">ご予約の流れ</h2>
+          </div>
+        </div>
+        <ol class="sg-flow__list">
+          <li class="sg-flow__item sg-reveal">
+            <p class="sg-flow__num">Step 01</p>
+            <h3 class="sg-flow__title">日付・人数を選ぶ</h3>
+            <p class="sg-flow__text">チェックイン日・泊数・人数を選んで、空室を検索します。</p>
+          </li>
+          <li class="sg-flow__item sg-reveal" style="--d:0.1s">
+            <p class="sg-flow__num">Step 02</p>
+            <h3 class="sg-flow__title">客室・プランを選ぶ</h3>
+            <p class="sg-flow__text">空いている客室とプランの中から、お好みのものをお選びください。</p>
+          </li>
+          <li class="sg-flow__item sg-reveal" style="--d:0.2s">
+            <p class="sg-flow__num">Step 03</p>
+            <h3 class="sg-flow__title">お客さま情報の入力</h3>
+            <p class="sg-flow__text">お名前・ご連絡先を入力し、お支払い方法を選びます。</p>
+          </li>
+          <li class="sg-flow__item sg-reveal" style="--d:0.3s">
+            <p class="sg-flow__num">Step 04</p>
+            <h3 class="sg-flow__title">ご予約の完了</h3>
+            <p class="sg-flow__text">ご登録のメールアドレスに、予約確認メールが届きます。</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== ご利用案内 ===== -->
+    <section class="sg-section sg-section--tight" id="sg-policy">
+      <div class="sg-inner">
+        <div class="sg-section-head">
+          <div class="sg-heading sg-heading--s sg-reveal">
+            <p class="sg-heading__en">Information</p>
+            <h2 class="sg-heading__ja">ご利用案内</h2>
+          </div>
+        </div>
+        <div class="sg-policy">
+          <div class="sg-policy__block sg-reveal">
+            <h3 class="sg-subhead">ご宿泊について</h3>
+            <table class="sg-table">
+              <tbody>
+                <tr><th scope="row">チェックイン</th><td>15:00〜19:00</td></tr>
+                <tr><th scope="row">チェックアウト</th><td>〜11:00</td></tr>
+                <tr><th scope="row">お支払い</th><td>クレジットカード、現地での現金払い</td></tr>
+                <tr><th scope="row">駐車場</th><td>無料（3台）</td></tr>
+              </tbody>
+            </table>
+            <h3 class="sg-subhead">館内でのお願い</h3>
+            <ul class="sg-dots">
+              <li>館内は全面禁煙です。</li>
+              <li>建物保護のため、ペットを連れてのご宿泊はお受けしておりません。</li>
+              <li>22時以降は、近隣の方のため静かにお過ごしください。</li>
+            </ul>
+          </div>
+          <div class="sg-policy__block sg-reveal" style="--d:.15s">
+            <h3 class="sg-subhead">キャンセルについて</h3>
+            <table class="sg-table">
+              <thead>
+                <tr><th scope="col">キャンセルの時期</th><th scope="col">キャンセル料</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">7日前まで</th><td>無料</td></tr>
+                <tr><th scope="row">6日前〜2日前</th><td>宿泊料金の30%</td></tr>
+                <tr><th scope="row">前日</th><td>宿泊料金の50%</td></tr>
+                <tr><th scope="row">当日・ご連絡のない不泊</th><td>宿泊料金の100%</td></tr>
+              </tbody>
+            </table>
+            <p class="sg-note">※キャンセルは、予約確認メールに記載のページ、またはお電話にて承ります。</p>
+            <div class="sg-telbox">
+              <p class="sg-telbox__label">お電話でのご予約・ご相談</p>
+              <p class="sg-telbox__num"><a href="tel:0000000000">0000-00-0000</a></p>
+              <p class="sg-telbox__note">受付 9:00〜18:00（水曜定休）</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- sg:footer ここから（全ページ共通。tools/build.py で他のページにもコピーされます） -->
+  <footer class="sg-footer">
+    <div class="sg-inner sg-footer__inner">
+      <div class="sg-footer__brand">
+        <svg class="sg-footer__mark" aria-hidden="true"><use href="#sg-emblem"></use></svg>
+        <p class="sg-footer__name">SOGETSURO</p>
+        <p class="sg-footer__sub">古民家の宿</p>
+      </div>
+      <div class="sg-footer__info">
+        <address class="sg-footer__address">〒000-0000 〇〇県〇〇市〇〇町0-00</address>
+        <p class="sg-footer__tel">TEL <a href="tel:0000000000">0000-00-0000</a></p>
+        <ul class="sg-footer__sns">
+          <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="#" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+      <nav class="sg-footer__nav" aria-label="フッターメニュー">
+        <ul>
+          <li><a href="index.html#sg-concept">はじめに</a></li>
+          <li><a href="index.html#sg-stay">泊まる</a></li>
+          <li><a href="index.html#sg-dining">食べる</a></li>
+          <li><a href="index.html#sg-experience">体験</a></li>
+          <li><a href="index.html#sg-town">町を歩く</a></li>
+          <li><a href="journal.html">よみもの</a></li>
+          <li><a href="index.html#sg-access">アクセス</a></li>
+          <li><a href="reserve.html">ご予約</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="sg-inner sg-footer__bottom">
+      <a class="sg-footer__policy" href="#">プライバシーポリシー</a>
+      <p class="sg-footer__copy"><small>&copy; <span data-sg-year>2026</span> SOGETSURO</small></p>
+    </div>
+  </footer>
+
+  <!-- ページトップ / スマホ用固定ボタン -->
+  <a class="sg-pagetop" href="#sg-site" aria-label="ページの先頭へ戻る"><span aria-hidden="true"></span></a>
+  <div class="sg-fixed-cta">
+    <a class="sg-fixed-cta__btn" href="tel:0000000000">電話</a>
+    <a class="sg-fixed-cta__btn" href="index.html#sg-access">アクセス</a>
+    <a class="sg-fixed-cta__btn sg-fixed-cta__btn--primary" href="reserve.html">ご予約</a>
+  </div>
+  <!-- /sg:footer ここまで -->
+</div>
+<!-- ========== SOGETSURO ここまで ========== -->
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

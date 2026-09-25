@@ -1,0 +1,213 @@
+<!--
+  SOGETSURO ─ 宿の詳細（蔵）
+  ・固定ページの「カスタムHTML」ブロックに、このファイルの中身をすべて貼り付けてください。
+  ・ページのテンプレートは「SOGETSURO 共通レイアウト」を選んでください。
+  ・スラッグ（URL）: 「stay-kura」
+  ・画像は /wp-content/uploads/sogetsuro/ にアップロードしてある前提です。
+-->
+<!-- ===== 見出し画像 ===== -->
+<section class="sg-page-hero">
+  <figure class="sg-page-hero__bg" data-sg-parallax="0.12">
+    <img src="/wp-content/uploads/sogetsuro/stay-03.jpg" alt="蔵の室内" width="1800" height="1200" fetchpriority="high" decoding="async">
+  </figure>
+  <div class="sg-page-hero__inner sg-reveal">
+    <p class="sg-page-hero__en">Kura</p>
+    <h1 class="sg-page-hero__title">蔵</h1>
+    <p class="sg-page-hero__lead">一棟貸し ／ 定員2〜4名 ／ 約60㎡</p>
+  </div>
+</section>
+
+<!-- パンくずリスト -->
+<nav class="sg-breadcrumb" aria-label="現在地">
+  <ol class="sg-inner">
+    <li><a href="/">トップ</a></li>
+    <li><a href="/#sg-stay">泊まる</a></li>
+    <li><span aria-current="page">蔵</span></li>
+  </ol>
+</nav>
+
+<!-- ===== 概要 ===== -->
+<section class="sg-section sg-section--tight sg-room-intro">
+  <div class="sg-inner sg-room-intro__grid">
+    <p class="sg-catch sg-reveal sg-reveal--v">
+      <span class="sg-catch__line">土壁に守られた、</span>
+      <span class="sg-catch__line">静かな書斎。</span>
+    </p>
+    <div class="sg-room-intro__body sg-reveal" style="--d:.2s">
+      <p>白い漆喰となまこ壁が目を引く、かつての米蔵を改装した客室です。厚い土壁に囲まれた室内は、夏はひんやりと、冬はほんのりと暖かく、外の音がほとんど届きません。</p>
+      <p>一階は本棚に囲まれた書斎とリビング、二階は梁の下のロフト寝室。読書や考えごと、長めのご滞在にもおすすめです。</p>
+      <ul class="sg-chips"><li>一棟貸し</li><li>定員2〜4名</li><li>約60㎡</li><li>メゾネット</li><li>書斎付き</li></ul>
+      <!-- Beds24 の部屋IDがわかったら href="/reserve/?roomid=部屋ID#sg-booking" にすると、この棟だけの予約画面になります -->
+      <a class="sg-btn sg-btn--fill" href="/reserve/#sg-booking">この棟の空室を見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 写真（クリックで拡大） ===== -->
+<section class="sg-section sg-section--tight sg-section--sub" id="sg-gallery">
+  <div class="sg-inner">
+    <div class="sg-section-head">
+      <div class="sg-heading sg-heading--s sg-reveal">
+        <p class="sg-heading__en">Gallery</p>
+        <h2 class="sg-heading__ja">写真</h2>
+      </div>
+    </div>
+    <ul class="sg-gallery sg-reveal" data-sg-lightbox>
+      <li class="sg-gallery__item"><a href="/wp-content/uploads/sogetsuro/kura-01.jpg" data-caption="蔵の外観"><img src="/wp-content/uploads/sogetsuro/kura-01.jpg" alt="蔵の外観" width="1600" height="1200" loading="lazy" decoding="async"></a></li>
+      <li class="sg-gallery__item"><a href="/wp-content/uploads/sogetsuro/kura-02.jpg" data-caption="本棚のある書斎"><img src="/wp-content/uploads/sogetsuro/kura-02.jpg" alt="本棚のある書斎" width="1600" height="1200" loading="lazy" decoding="async"></a></li>
+      <li class="sg-gallery__item"><a href="/wp-content/uploads/sogetsuro/kura-03.jpg" data-caption="梁の下のロフト寝室"><img src="/wp-content/uploads/sogetsuro/kura-03.jpg" alt="梁の下のロフト寝室" width="1600" height="1200" loading="lazy" decoding="async"></a></li>
+      <li class="sg-gallery__item"><a href="/wp-content/uploads/sogetsuro/kura-04.jpg" data-caption="リビング"><img src="/wp-content/uploads/sogetsuro/kura-04.jpg" alt="リビング" width="1600" height="1200" loading="lazy" decoding="async"></a></li>
+      <li class="sg-gallery__item"><a href="/wp-content/uploads/sogetsuro/kura-05.jpg" data-caption="蔵の扉"><img src="/wp-content/uploads/sogetsuro/kura-05.jpg" alt="蔵の扉" width="1600" height="1200" loading="lazy" decoding="async"></a></li>
+    </ul>
+    <p class="sg-gallery-note">写真をクリック（タップ）すると、大きく表示されます。</p>
+  </div>
+</section>
+
+<!-- ===== 見どころ ===== -->
+<section class="sg-section sg-section--tight sg-points">
+  <div class="sg-inner">
+    <div class="sg-section-head">
+      <div class="sg-heading sg-heading--s sg-reveal">
+        <p class="sg-heading__en">Point</p>
+        <h2 class="sg-heading__ja">見どころ</h2>
+      </div>
+    </div>
+    <div class="sg-points__list">
+      <article class="sg-point">
+        <figure class="sg-point__img sg-reveal sg-reveal--mask"><img src="/wp-content/uploads/sogetsuro/kura-02.jpg" alt="本棚のある書斎" width="1600" height="1200" loading="lazy" decoding="async"></figure>
+        <div class="sg-point__body sg-reveal" style="--d:.15s">
+          <p class="sg-point__num">01</p>
+          <h3 class="sg-point__title">蔵の書斎</h3>
+          <p class="sg-point__text">壁一面の本棚には、町や暮らしにまつわる本を揃えました。厚い扉を閉めれば、驚くほどの静けさに包まれます。</p>
+        </div>
+      </article>
+      <article class="sg-point">
+        <figure class="sg-point__img sg-reveal sg-reveal--mask"><img src="/wp-content/uploads/sogetsuro/kura-03.jpg" alt="梁の下のロフト寝室" width="1600" height="1200" loading="lazy" decoding="async"></figure>
+        <div class="sg-point__body sg-reveal" style="--d:.15s">
+          <p class="sg-point__num">02</p>
+          <h3 class="sg-point__title">梁の下のロフト</h3>
+          <p class="sg-point__text">二階は、太い梁がそのまま見えるロフトの寝室。高窓から差し込む朝の光で目を覚まします。</p>
+        </div>
+      </article>
+      <article class="sg-point">
+        <figure class="sg-point__img sg-reveal sg-reveal--mask"><img src="/wp-content/uploads/sogetsuro/kura-04.jpg" alt="リビング" width="1600" height="1200" loading="lazy" decoding="async"></figure>
+        <div class="sg-point__body sg-reveal" style="--d:.15s">
+          <p class="sg-point__num">03</p>
+          <h3 class="sg-point__title">蔵戸と漆喰の壁</h3>
+          <p class="sg-point__text">重厚な蔵戸や漆喰の壁は、左官職人の手で丁寧に補修しました。昔の技と今の暮らしが同居する空間です。</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 間取り ===== -->
+<section class="sg-section sg-section--tight sg-section--sub">
+  <div class="sg-inner">
+    <div class="sg-section-head">
+      <div class="sg-heading sg-heading--s sg-reveal">
+        <p class="sg-heading__en">Floor plan</p>
+        <h2 class="sg-heading__ja">間取り</h2>
+      </div>
+    </div>
+    <div class="sg-floor">
+      <figure class="sg-floor__img sg-reveal" data-sg-lightbox>
+        <a href="/wp-content/uploads/sogetsuro/plan-kura.jpg" data-caption="蔵の間取り図"><img src="/wp-content/uploads/sogetsuro/plan-kura.jpg" alt="蔵の間取り図" width="1600" height="1200" loading="lazy" decoding="async"></a>
+      </figure>
+      <dl class="sg-floor__list sg-reveal" style="--d:.15s">
+        <dt>1F</dt>
+        <dd>リビング・書斎</dd>
+        <dd>シャワールーム・洗面・トイレ</dd>
+        <dt>2F</dt>
+        <dd>ロフト寝室 … ダブルベッド 1台・布団 2組</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 建物情報・設備・料金 ===== -->
+<section class="sg-section sg-section--tight">
+  <div class="sg-inner">
+    <div class="sg-section-head">
+      <div class="sg-heading sg-heading--s sg-reveal">
+        <p class="sg-heading__en">Information</p>
+        <h2 class="sg-heading__ja">建物情報</h2>
+      </div>
+    </div>
+    <dl class="sg-spec sg-reveal">
+      <div><dt>建築年</dt><dd>大正期（推定）</dd></div>
+      <div><dt>構造</dt><dd>土蔵造り2階建て</dd></div>
+      <div><dt>延床面積</dt><dd>約60㎡</dd></div>
+      <div><dt>定員</dt><dd>2〜4名</dd></div>
+      <div><dt>寝室</dt><dd>1室（ロフト）</dd></div>
+      <div><dt>寝具</dt><dd>ダブルベッド1台・布団2組</dd></div>
+      <div><dt>浴室</dt><dd>シャワールーム</dd></div>
+      <div><dt>トイレ</dt><dd>1か所</dd></div>
+      <div><dt>キッチン</dt><dd>なし（冷蔵庫・電気ケトルあり）</dd></div>
+      <div><dt>駐車場</dt><dd>1台</dd></div>
+      <div><dt>Wi-Fi</dt><dd>あり</dd></div>
+      <div><dt>チェックイン</dt><dd>15:00〜19:00 ／ アウト 〜11:00</dd></div>
+    </dl>
+
+    <h3 class="sg-subhead">設備・アメニティ</h3>
+    <ul class="sg-amenities"><li>冷暖房</li><li>Wi-Fi</li><li>冷蔵庫</li><li>電気ケトル</li><li>コーヒー・お茶セット</li><li>書籍（約300冊）</li><li>デスク・ライト</li><li>ドライヤー</li><li>タオル類</li><li>シャンプー・ボディソープ</li><li>部屋着</li><li>歯ブラシ</li></ul>
+
+    <h3 class="sg-subhead">料金の目安</h3>
+    <table class="sg-table">
+      <thead>
+        <tr><th scope="col">ご利用人数</th><th scope="col">1泊・1棟あたり（税込・素泊まり）</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">2名さま</th><td class="is-num">¥32,000〜</td></tr>
+        <tr><th scope="row">3名さま</th><td class="is-num">¥38,000〜</td></tr>
+        <tr><th scope="row">4名さま</th><td class="is-num">¥44,000〜</td></tr>
+      </tbody>
+    </table>
+    <p class="sg-note">※料金は時期・曜日により変わります。最新の料金は<a href="/reserve/">ご予約ページ</a>でご確認ください。</p>
+  </div>
+</section>
+
+<!-- ===== 予約バナー ===== -->
+<section class="sg-reserve sg-reserve--band">
+  <figure class="sg-reserve__bg" data-sg-parallax="0.2">
+    <img src="/wp-content/uploads/sogetsuro/stay-03.jpg" alt="" width="1800" height="1200" loading="lazy" decoding="async">
+  </figure>
+  <div class="sg-reserve__inner sg-reveal">
+    <p class="sg-reserve__en">Reservation</p>
+    <p class="sg-reserve__title">蔵の空室を確認する</p>
+    <div class="sg-reserve__btns">
+      <a class="sg-btn sg-btn--fill" href="/reserve/#sg-booking">空室検索・ご予約</a>
+      <a class="sg-btn sg-btn--light" href="/contact/">お問い合わせ</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ほかの客室 ===== -->
+<section class="sg-section sg-section--tight">
+  <div class="sg-inner">
+    <div class="sg-section-head">
+      <div class="sg-heading sg-heading--s sg-reveal">
+        <p class="sg-heading__en">Other rooms</p>
+        <h2 class="sg-heading__ja">ほかの客室</h2>
+      </div>
+    </div>
+    <div class="sg-room-cards">
+      <article class="sg-room-card sg-reveal">
+        <a href="/stay-omoya/">
+          <figure class="sg-room-card__img"><img src="/wp-content/uploads/sogetsuro/stay-01.jpg" alt="" width="1800" height="1200" loading="lazy" decoding="async"></figure>
+          <p class="sg-room-card__en">Omoya</p>
+          <h3 class="sg-room-card__name">母屋</h3>
+          <p class="sg-room-card__spec">一棟貸し ／ 定員2〜8名</p>
+        </a>
+      </article>
+      <article class="sg-room-card sg-reveal" style="--d:.15s">
+        <a href="/stay-hanare/">
+          <figure class="sg-room-card__img"><img src="/wp-content/uploads/sogetsuro/stay-02.jpg" alt="" width="1800" height="1200" loading="lazy" decoding="async"></figure>
+          <p class="sg-room-card__en">Hanare</p>
+          <h3 class="sg-room-card__name">離れ</h3>
+          <p class="sg-room-card__spec">一棟貸し ／ 定員2〜3名</p>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>

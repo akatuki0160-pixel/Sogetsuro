@@ -1,0 +1,231 @@
+<!--
+  SOGETSURO ─ ご予約
+  ・固定ページの「カスタムHTML」ブロックに、このファイルの中身をすべて貼り付けてください。
+  ・ページのテンプレートは「SOGETSURO 共通レイアウト」を選んでください。
+  ・スラッグ（URL）: 「reserve」
+  ・画像は /wp-content/uploads/sogetsuro/ にアップロードしてある前提です。
+-->
+<!-- ===== 見出し画像 ===== -->
+<section class="sg-page-hero">
+  <figure class="sg-page-hero__bg" data-sg-parallax="0.12">
+    <img src="/wp-content/uploads/sogetsuro/page-reserve.jpg" alt="" width="2400" height="1200" fetchpriority="high" decoding="async">
+  </figure>
+  <div class="sg-page-hero__inner sg-reveal">
+    <p class="sg-page-hero__en">Reservation</p>
+    <h1 class="sg-page-hero__title">ご予約</h1>
+    <p class="sg-page-hero__lead">オンライン予約で、空室の確認からお支払いまでその場で完了します。</p>
+  </div>
+</section>
+
+<!-- パンくずリスト -->
+<nav class="sg-breadcrumb" aria-label="現在地">
+  <ol class="sg-inner">
+    <li><a href="/">トップ</a></li>
+    <li><span aria-current="page">ご予約</span></li>
+  </ol>
+</nav>
+
+<!-- ===== 空室を探す ===== -->
+<section class="sg-section sg-section--tight" id="sg-search">
+  <div class="sg-inner">
+    <div class="sg-section-head">
+      <div class="sg-heading sg-heading--s sg-reveal">
+        <p class="sg-heading__en">Search</p>
+        <h2 class="sg-heading__ja">空室を探す</h2>
+      </div>
+      <p class="sg-section-head__lead sg-reveal" style="--d:.2s">チェックイン日と人数を選んで「空室を検索」を押すと、下の予約画面に空室状況が表示されます。</p>
+    </div>
+    <form class="sg-search" action="/reserve/#sg-booking" method="get" data-sg-search>
+      <div class="sg-search__field sg-search__field--date">
+        <label for="sg-rs-checkin">チェックイン</label>
+        <input type="date" id="sg-rs-checkin" name="checkin" required>
+      </div>
+      <div class="sg-search__field">
+        <label for="sg-rs-numnight">泊数</label>
+        <select id="sg-rs-numnight" name="numnight">
+          <option value="1">1泊</option>
+          <option value="2">2泊</option>
+          <option value="3">3泊</option>
+          <option value="4">4泊</option>
+          <option value="5">5泊</option>
+          <option value="6">6泊</option>
+          <option value="7">7泊</option>
+        </select>
+      </div>
+      <div class="sg-search__field">
+        <label for="sg-rs-numadult">大人</label>
+        <select id="sg-rs-numadult" name="numadult">
+          <option value="1">1名</option>
+          <option value="2" selected>2名</option>
+          <option value="3">3名</option>
+          <option value="4">4名</option>
+          <option value="5">5名</option>
+          <option value="6">6名</option>
+          <option value="7">7名</option>
+          <option value="8">8名</option>
+        </select>
+      </div>
+      <div class="sg-search__field">
+        <label for="sg-rs-numchild">子ども</label>
+        <select id="sg-rs-numchild" name="numchild">
+          <option value="0">0名</option>
+          <option value="1">1名</option>
+          <option value="2">2名</option>
+          <option value="3">3名</option>
+          <option value="4">4名</option>
+          <option value="5">5名</option>
+          <option value="6">6名</option>
+        </select>
+      </div>
+      <button class="sg-search__submit" type="submit">空室を検索</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===== 予約画面（Beds24） ===== -->
+<section class="sg-section sg-section--tight sg-section--sub" id="sg-booking">
+  <div class="sg-inner">
+    <div class="sg-section-head">
+      <div class="sg-heading sg-heading--s sg-reveal">
+        <p class="sg-heading__en">Booking</p>
+        <h2 class="sg-heading__ja">オンライン予約</h2>
+      </div>
+      <p class="sg-section-head__lead sg-reveal" style="--d:.2s">客室とプランを選んで、そのままご予約いただけます。ご予約が確定すると、確認メールが届きます。</p>
+    </div>
+    [sogetsuro_beds24]
+  </div>
+</section>
+
+<!-- ===== 宿泊プラン ===== -->
+<section class="sg-section sg-section--tight" id="sg-plan">
+  <div class="sg-inner">
+    <div class="sg-section-head">
+      <div class="sg-heading sg-heading--s sg-reveal">
+        <p class="sg-heading__en">Plan</p>
+        <h2 class="sg-heading__ja">宿泊プラン</h2>
+      </div>
+      <p class="sg-section-head__lead sg-reveal" style="--d:.2s">滞在のしかたに合わせて、3つのプランをご用意しています。</p>
+    </div>
+    <div class="sg-plans__list">
+      <article class="sg-plan sg-reveal">
+        <figure class="sg-plan__img"><img src="/wp-content/uploads/sogetsuro/plan-01.jpg" alt="" width="1200" height="800" loading="lazy" decoding="async"></figure>
+        <div class="sg-plan__body">
+          <p class="sg-plan__label">Plan 01</p>
+          <h3 class="sg-plan__name">素泊まりプラン</h3>
+          <p class="sg-plan__price"><strong>¥16,000</strong>〜 ／ 1名（2名利用時）</p>
+          <p class="sg-plan__text">お食事なしで、自由に町を楽しみたい方に。キッチン付きの棟では、市場で買った食材で自炊も楽しめます。</p>
+          <ul class="sg-plan__list sg-dots"><li>チェックイン 15:00 ／ アウト 11:00</li><li>手描きの町歩きマップ付き</li></ul>
+          <a class="sg-btn" href="#sg-booking">このプランで予約</a>
+        </div>
+      </article>
+      <article class="sg-plan sg-reveal" style="--d:0.1s">
+        <figure class="sg-plan__img"><img src="/wp-content/uploads/sogetsuro/plan-02.jpg" alt="" width="1200" height="800" loading="lazy" decoding="async"></figure>
+        <div class="sg-plan__body">
+          <p class="sg-plan__label">Plan 02</p>
+          <h3 class="sg-plan__name">朝食付きプラン</h3>
+          <p class="sg-plan__price"><strong>¥19,000</strong>〜 ／ 1名（2名利用時）</p>
+          <p class="sg-plan__text">土鍋で炊いたごはんと、出汁の香るお味噌汁の朝食付き。いちばん人気のプランです。</p>
+          <ul class="sg-plan__list sg-dots"><li>朝食 8:00〜9:30</li><li>手描きの町歩きマップ付き</li></ul>
+          <a class="sg-btn" href="#sg-booking">このプランで予約</a>
+        </div>
+      </article>
+      <article class="sg-plan sg-reveal" style="--d:0.2s">
+        <figure class="sg-plan__img"><img src="/wp-content/uploads/sogetsuro/plan-03.jpg" alt="" width="1200" height="800" loading="lazy" decoding="async"></figure>
+        <div class="sg-plan__body">
+          <p class="sg-plan__label">Plan 03</p>
+          <h3 class="sg-plan__name">夕朝食付きプラン</h3>
+          <p class="sg-plan__price"><strong>¥28,000</strong>〜 ／ 1名（2名利用時）</p>
+          <p class="sg-plan__text">囲炉裏を囲む夕食と朝食の付いた、宿の味を存分に楽しめるプランです。</p>
+          <ul class="sg-plan__list sg-dots"><li>夕食 18:00〜 または 19:30〜</li><li>地酒の飲み比べ付き</li></ul>
+          <a class="sg-btn" href="#sg-booking">このプランで予約</a>
+        </div>
+      </article>
+    </div>
+    <p class="sg-note">※料金は目安です。時期・人数・客室により変わります。</p>
+  </div>
+</section>
+
+<!-- ===== ご予約の流れ ===== -->
+<section class="sg-section sg-section--tight sg-section--sub">
+  <div class="sg-inner">
+    <div class="sg-section-head">
+      <div class="sg-heading sg-heading--s sg-reveal">
+        <p class="sg-heading__en">Flow</p>
+        <h2 class="sg-heading__ja">ご予約の流れ</h2>
+      </div>
+    </div>
+    <ol class="sg-flow__list">
+      <li class="sg-flow__item sg-reveal">
+        <p class="sg-flow__num">Step 01</p>
+        <h3 class="sg-flow__title">日付・人数を選ぶ</h3>
+        <p class="sg-flow__text">チェックイン日・泊数・人数を選んで、空室を検索します。</p>
+      </li>
+      <li class="sg-flow__item sg-reveal" style="--d:0.1s">
+        <p class="sg-flow__num">Step 02</p>
+        <h3 class="sg-flow__title">客室・プランを選ぶ</h3>
+        <p class="sg-flow__text">空いている客室とプランの中から、お好みのものをお選びください。</p>
+      </li>
+      <li class="sg-flow__item sg-reveal" style="--d:0.2s">
+        <p class="sg-flow__num">Step 03</p>
+        <h3 class="sg-flow__title">お客さま情報の入力</h3>
+        <p class="sg-flow__text">お名前・ご連絡先を入力し、お支払い方法を選びます。</p>
+      </li>
+      <li class="sg-flow__item sg-reveal" style="--d:0.3s">
+        <p class="sg-flow__num">Step 04</p>
+        <h3 class="sg-flow__title">ご予約の完了</h3>
+        <p class="sg-flow__text">ご登録のメールアドレスに、予約確認メールが届きます。</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== ご利用案内 ===== -->
+<section class="sg-section sg-section--tight" id="sg-policy">
+  <div class="sg-inner">
+    <div class="sg-section-head">
+      <div class="sg-heading sg-heading--s sg-reveal">
+        <p class="sg-heading__en">Information</p>
+        <h2 class="sg-heading__ja">ご利用案内</h2>
+      </div>
+    </div>
+    <div class="sg-policy">
+      <div class="sg-policy__block sg-reveal">
+        <h3 class="sg-subhead">ご宿泊について</h3>
+        <table class="sg-table">
+          <tbody>
+            <tr><th scope="row">チェックイン</th><td>15:00〜19:00</td></tr>
+            <tr><th scope="row">チェックアウト</th><td>〜11:00</td></tr>
+            <tr><th scope="row">お支払い</th><td>クレジットカード、現地での現金払い</td></tr>
+            <tr><th scope="row">駐車場</th><td>無料（3台）</td></tr>
+          </tbody>
+        </table>
+        <h3 class="sg-subhead">館内でのお願い</h3>
+        <ul class="sg-dots">
+          <li>館内は全面禁煙です。</li>
+          <li>建物保護のため、ペットを連れてのご宿泊はお受けしておりません。</li>
+          <li>22時以降は、近隣の方のため静かにお過ごしください。</li>
+        </ul>
+      </div>
+      <div class="sg-policy__block sg-reveal" style="--d:.15s">
+        <h3 class="sg-subhead">キャンセルについて</h3>
+        <table class="sg-table">
+          <thead>
+            <tr><th scope="col">キャンセルの時期</th><th scope="col">キャンセル料</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">7日前まで</th><td>無料</td></tr>
+            <tr><th scope="row">6日前〜2日前</th><td>宿泊料金の30%</td></tr>
+            <tr><th scope="row">前日</th><td>宿泊料金の50%</td></tr>
+            <tr><th scope="row">当日・ご連絡のない不泊</th><td>宿泊料金の100%</td></tr>
+          </tbody>
+        </table>
+        <p class="sg-note">※キャンセルは、予約確認メールに記載のページ、またはお電話にて承ります。</p>
+        <div class="sg-telbox">
+          <p class="sg-telbox__label">お電話でのご予約・ご相談</p>
+          <p class="sg-telbox__num"><a href="tel:0000000000">0000-00-0000</a></p>
+          <p class="sg-telbox__note">受付 9:00〜18:00（水曜定休）</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

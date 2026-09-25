@@ -1,0 +1,104 @@
+====================================================================
+ SOGETSURO ─ Contact Form 7 の設定
+====================================================================
+
+■ 使い方
+  1. プラグイン「Contact Form 7」をインストールして有効化
+  2. 「お問い合わせ → 新規追加」でフォームを作り、タイトルを「お問い合わせ」にする
+  3. 下の【フォーム】を「フォーム」タブに、【メール】を「メール」タブに貼り付けて保存
+  4. 保存すると表示されるショートコード（例：[contact-form-7 id="1a2b3c4" title="お問い合わせ"]）をコピー
+  5. お問い合わせページのカスタムHTML（wordpress/pages/contact.html）の
+       [contact-form-7 id="ここにフォームID" title="お問い合わせ"]
+     を、コピーしたショートコードに置き換える
+
+  ※ プライバシーポリシーのURLが「/privacy-policy/」でない場合は、【フォーム】の最後のリンクを書き換えてください。
+  ※ SOGETSURO のページでは、Contact Form 7 の自動整形（<p>・<br> の自動挿入）はオフになります。
+
+
+--------------------------------------------------------------------
+【フォーム】（「フォーム」タブの中身をすべて消して、ここから下を貼り付け）
+--------------------------------------------------------------------
+<p class="sg-form__intro"><span class="sg-form__req">必須</span> の項目は必ずご入力ください。</p>
+<div class="sg-form__rows">
+<div class="sg-form__row">
+<p class="sg-form__label">お問い合わせの種類<span class="sg-form__req">必須</span></p>
+<div class="sg-form__field">[radio inquiry-type use_label_element default:1 "ご宿泊について" "お食事・体験について" "取材・撮影について" "その他"]</div>
+</div>
+<div class="sg-form__row">
+<label class="sg-form__label" for="sg-f-name">お名前<span class="sg-form__req">必須</span></label>
+<div class="sg-form__field">[text* your-name id:sg-f-name autocomplete:name placeholder "例）山田 花子"]</div>
+</div>
+<div class="sg-form__row">
+<label class="sg-form__label" for="sg-f-kana">フリガナ<span class="sg-form__opt">任意</span></label>
+<div class="sg-form__field">[text your-kana id:sg-f-kana placeholder "例）ヤマダ ハナコ"]</div>
+</div>
+<div class="sg-form__row">
+<label class="sg-form__label" for="sg-f-email">メールアドレス<span class="sg-form__req">必須</span></label>
+<div class="sg-form__field">[email* your-email id:sg-f-email autocomplete:email placeholder "例）info@example.com"]</div>
+</div>
+<div class="sg-form__row">
+<label class="sg-form__label" for="sg-f-tel">電話番号<span class="sg-form__opt">任意</span></label>
+<div class="sg-form__field">[tel your-tel id:sg-f-tel autocomplete:tel placeholder "例）000-0000-0000"]</div>
+</div>
+<div class="sg-form__row">
+<label class="sg-form__label" for="sg-f-date">ご宿泊予定日<span class="sg-form__opt">任意</span></label>
+<div class="sg-form__field">[date stay-date id:sg-f-date]
+<p class="sg-form__help">ご宿泊についてのお問い合わせの場合はご入力ください。</p></div>
+</div>
+<div class="sg-form__row">
+<label class="sg-form__label" for="sg-f-guests">ご人数<span class="sg-form__opt">任意</span></label>
+<div class="sg-form__field">[select guests id:sg-f-guests first_as_label "選択してください" "1名" "2名" "3名" "4名" "5名" "6名" "7名" "8名" "9名以上"]</div>
+</div>
+<div class="sg-form__row">
+<label class="sg-form__label" for="sg-f-message">お問い合わせ内容<span class="sg-form__req">必須</span></label>
+<div class="sg-form__field">[textarea* your-message id:sg-f-message placeholder "ご質問やご要望をご記入ください。"]</div>
+</div>
+</div>
+<div class="sg-form__accept">[acceptance privacy-accept] <a href="/privacy-policy/" target="_blank" rel="noopener">プライバシーポリシー</a>に同意する [/acceptance]</div>
+<div class="sg-form__submit">[submit "送信する"]</div>
+
+
+--------------------------------------------------------------------
+【メール】（「メール」タブ）
+--------------------------------------------------------------------
+送信先        : （宿の受信用メールアドレス）
+送信元        : [_site_title] <wordpress@（サイトのドメイン）>
+題名          : [_site_title] お問い合わせ：[inquiry-type]
+追加ヘッダー  : Reply-To: [your-email]
+
+メッセージ本文:
+お問い合わせの種類：[inquiry-type]
+お名前：[your-name]（[your-kana]）
+メールアドレス：[your-email]
+電話番号：[your-tel]
+ご宿泊予定日：[stay-date]
+ご人数：[guests]
+
+お問い合わせ内容：
+[your-message]
+
+--
+このメールは [_site_title]（[_site_url]）のお問い合わせフォームから送信されました。
+
+
+--------------------------------------------------------------------
+【自動返信】（「メール」タブ下の「メール (2) を使用」にチェック）
+--------------------------------------------------------------------
+送信先        : [your-email]
+送信元        : [_site_title] <wordpress@（サイトのドメイン）>
+題名          : 【[_site_title]】お問い合わせありがとうございます
+追加ヘッダー  : Reply-To: （宿の受信用メールアドレス）
+
+メッセージ本文:
+[your-name] 様
+
+このたびはお問い合わせいただき、ありがとうございます。
+以下の内容で受け付けました。3営業日以内に担当者よりご連絡いたします。
+
+お問い合わせの種類：[inquiry-type]
+お問い合わせ内容：
+[your-message]
+
+--
+[_site_title]
+[_site_url]
