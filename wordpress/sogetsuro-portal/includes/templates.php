@@ -165,3 +165,85 @@ add_filter(
 		return sg_portal_context() ? false : $autop;
 	}
 );
+
+/**
+ * 「/」から始まる URL に、WordPress を置いたフォルダを補う（SOGETSURO のページだけ）
+ *
+ * 貼り付けた HTML は、画像やリンクを「/wp-content/…」「/reserve/」のようにドメイン直下からの形で書いています。
+ * WordPress をフォルダの中（例：https://example.com/site/）に置いた場合は、表示するときに自動で
+ *   /wp-content/uploads/sogetsuro/hero-01.jpg → /site/wp-content/uploads/sogetsuro/hero-01.jpg
+ *   /reserve/                                 → /site/reserve/
+ * のように補います。ドメイン直下に置いた場合は何も変えません。
+ * HTML は書き換えずに、ステージング（フォルダの中）と本番（ドメイン直下）の両方で同じように表示できます。
+ *
+ * @param string $html 本文の HTML.
+ * @return string
+ */
+function sg_portal_fix_root_paths( $html ) {
+	$home    = (string) wp_parse_url( home_url( '/' ), PHP_URL_PATH );
+	$content = (string) wp_parse_url( content_url( '/' ), PHP_URL_PATH );
+	$home    = '' === $home ? '/' : trailingslashit( $home );
+	$content = '' === $content ? '/wp-content/' : trailingslashit( $content );
+	if ( '/' === $home && '/wp-content/' === $content ) {
+		return $html;
+	}
+
+	// $path は「/」から始まる URL（「//」から始まるものは対象外）
+	$fix = function ( $path ) use ( $home, $content ) {
+		if ( 0 === strpos( $path, '/wp-content/' ) ) {
+			return $content . substr( $path, strlen( '/wp-content/' ) );
+		}
+		if ( '/' !== $home && ( 0 === strpos( $path, $home ) || untrailingslashit( $home ) === $path ) ) {
+			return $path; // すでにフォルダが付いている
+		}
+		return $home . ltrim( $path, '/' );
+	};
+
+	// src・href・action・poster
+	$html = preg_replace_callback(
+		'#(\s(?:src|href|action|poster)\s*=\s*)(["\'])(/(?!/)[^"\']*)\2#i',
+		function ( $m ) use ( $fix ) {
+			return $m[1] . $m[2] . $fix( $m[3] ) . $m[2];
+		},
+		$html
+	);
+
+	// srcset（「URL 幅」をカンマで区切ったもの）
+	$html = preg_replace_callback(
+		'#(\ssrcset\s*=\s*)(["\'])([^"\']*)\2#i',
+		function ( $m ) use ( $fix ) {
+			$items = array();
+			foreach ( explode( ',', $m[3] ) as $item ) {
+				$item    = trim( $item );
+				$items[] = preg_match( '#^/(?!/)#', $item )
+					? preg_replace_callback(
+						'#^\S+#',
+						function ( $url ) use ( $fix ) {
+							return $fix( $url[0] );
+						},
+						$item
+					)
+					: $item;
+			}
+			return $m[1] . $m[2] . implode( ', ', $items ) . $m[2];
+		},
+		$html
+	);
+
+	// style の中の url(/…)
+	return preg_replace_callback(
+		'#url\(\s*(["\']?)(/(?!/)[^"\')\s]*)\1\s*\)#i',
+		function ( $m ) use ( $fix ) {
+			return 'url(' . $m[1] . $fix( $m[2] ) . $m[1] . ')';
+		},
+		$html
+	);
+}
+
+add_filter(
+	'the_content',
+	function ( $content ) {
+		return sg_portal_context() ? sg_portal_fix_root_paths( $content ) : $content;
+	},
+	20 // ショートコード（11）のあとに実行（Contact Form 7 のフォームの中のリンクも対象にする）
+);
