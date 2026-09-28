@@ -250,6 +250,11 @@
   border: 0;
 }
 
+/* --- 言葉の途中で改行しない（例：佐渡<span class="sg-nowrap">プライベートガイド</span>） --- */
+.sg-site .sg-nowrap {
+  display: inline-block;
+}
+
 .sg-site .sg-sprite {
   position: absolute;
   width: 0;
@@ -1358,8 +1363,8 @@
 
 .sg-site .sg-news__item a {
   position: relative;
-  display: grid;
-  grid-template-columns: max-content auto;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 6px 18px;
   padding: 22px 48px 22px 0;
@@ -1405,7 +1410,7 @@
 }
 
 .sg-site .sg-news__title {
-  grid-column: 1 / -1;
+  width: 100%;
   transition: opacity 0.4s;
 }
 
@@ -1415,12 +1420,13 @@
 
 @media (min-width: 768px) {
   .sg-site .sg-news__item a {
+    display: grid;
     grid-template-columns: 7.5em 7em auto;
     gap: 24px;
   }
 
   .sg-site .sg-news__title {
-    grid-column: auto;
+    width: auto;
   }
 }
 
@@ -2810,6 +2816,7 @@
 
 .sg-site .sg-table tbody th {
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .sg-site .sg-table .is-num {
@@ -4835,6 +4842,9 @@
   width: 100%;
   min-width: 0;
   margin-top: auto;
+  gap: 16px;
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
 @media (min-width: 1024px) {
