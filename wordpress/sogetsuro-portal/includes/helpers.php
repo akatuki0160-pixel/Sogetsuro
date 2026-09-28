@@ -97,6 +97,22 @@ function sg_portal_nav_items() {
 }
 
 /**
+ * SNS のリンク（空欄のものは除く）
+ *
+ * @return array 表示名 => URL
+ */
+function sg_portal_sns() {
+	return array_filter(
+		array(
+			'Instagram' => sg_portal_option( 'instagram' ),
+			'Facebook'  => sg_portal_option( 'facebook' ),
+			'LINE'      => sg_portal_option( 'line' ),
+			'WhatsApp'  => sg_portal_option( 'whatsapp' ),
+		)
+	);
+}
+
+/**
  * 記事の抜粋（日本語でも指定の文字数で切る）
  *
  * @param WP_Post|int|null $post   投稿.

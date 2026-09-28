@@ -56,7 +56,7 @@
 .sg-body {
   margin: 0;
   padding: 0;
-  background: #211e1b;
+  background: #01040f;
 }
 
 .sg-site {
@@ -69,6 +69,7 @@
   overflow: clip;
   background: var(--sg-c-bg);
   color: var(--sg-c-text);
+  color-scheme: var(--sg-color-scheme);
   font-family: var(--sg-f-ja);
   font-size: 15px;
   font-weight: 400;
@@ -201,7 +202,7 @@
 
 .sg-site ::selection {
   background: var(--sg-c-accent);
-  color: #fff;
+  color: var(--sg-c-on-accent);
 }
 
 
@@ -449,16 +450,16 @@
 .sg-site .sg-btn--fill {
   border-color: var(--sg-c-accent);
   background: var(--sg-c-accent);
-  color: #fff;
+  color: var(--sg-c-on-accent);
 }
 
 .sg-site .sg-btn--fill::before {
-  background: #fff;
+  background: var(--sg-c-invert);
 }
 
 .sg-site .sg-btn--fill:hover {
-  border-color: #fff;
-  color: var(--sg-c-accent);
+  border-color: var(--sg-c-invert);
+  color: var(--sg-c-on-invert);
 }
 
 /* --- 矢印つきテキストリンク --- */
@@ -702,14 +703,14 @@
   width: 118px;
   height: 56px;
   background: var(--sg-c-accent);
-  color: #fff;
+  color: var(--sg-c-on-accent);
   line-height: 1.2;
   transition: background-color 0.5s var(--sg-ease), color 0.5s var(--sg-ease);
 }
 
 .sg-site .sg-header__reserve:hover {
-  background: #fff;
-  color: var(--sg-c-accent);
+  background: var(--sg-c-invert);
+  color: var(--sg-c-on-invert);
 }
 
 .sg-site .sg-header__reserve-en {
@@ -973,7 +974,7 @@
   height: var(--sg-hero-h, 100vh); /* スマホのアドレスバー分をJSで調整 */
   min-height: 560px;
   overflow: hidden;
-  background: #1b1916;
+  background: var(--sg-c-dark);
   color: #fff;
 }
 
@@ -2122,7 +2123,7 @@
   bottom: 0;
   left: 0;
   z-index: 1;
-  background: rgba(20, 17, 14, 0.55);
+  background: var(--sg-c-overlay);
 }
 
 .sg-site .sg-reserve__inner {
@@ -2319,7 +2320,7 @@
   visibility: hidden;
   border: 1px solid var(--sg-c-line);
   border-radius: 50%;
-  background: rgba(244, 241, 234, 0.92);
+  background: var(--sg-c-bg);
   color: var(--sg-c-text);
   opacity: 0;
   transform: translate3d(0, 12px, 0);
@@ -2396,7 +2397,7 @@
   flex-grow: 1.4;
   border-right: 0;
   background: var(--sg-c-accent);
-  color: #fff;
+  color: var(--sg-c-on-accent);
 }
 
 @media (min-width: 768px) {
@@ -3811,7 +3812,7 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background-color: rgba(33, 30, 27, 0.55);
+  background-color: var(--sg-c-overlay);
   background-image: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
   background-position: center;
   background-repeat: no-repeat;
@@ -4089,7 +4090,7 @@
   align-items: center;
   justify-content: center;
   padding: 72px 16px;
-  background: rgba(20, 17, 14, 0.94);
+  background: rgba(1, 4, 15, 0.95);
   color: var(--sg-c-dark-text);
   opacity: 0;
   transition: opacity 0.4s var(--sg-ease);
@@ -4337,7 +4338,7 @@
 
 .sg-site .sg-form__req {
   background: var(--sg-c-accent);
-  color: #fff;
+  color: var(--sg-c-on-accent);
 }
 
 .sg-site .sg-form__opt {
@@ -4370,7 +4371,7 @@
   padding: 12px 16px;
   border: 1px solid var(--sg-c-field);
   border-radius: 0;
-  background-color: #fff;
+  background-color: var(--sg-c-field-bg);
   box-shadow: none;
   color: var(--sg-c-text);
   font-family: inherit;
@@ -4456,7 +4457,7 @@
   border: 1px solid var(--sg-c-accent);
   border-radius: 0;
   background: var(--sg-c-accent);
-  color: #fff;
+  color: var(--sg-c-on-accent);
   font-family: inherit;
   font-size: 15px;
   line-height: 1.6;
@@ -4480,13 +4481,13 @@
 }
 
 .sg-site .sg-form .wpcf7-not-valid {
-  border-color: #b3372b;
+  border-color: var(--sg-c-error);
 }
 
 .sg-site .sg-form .wpcf7-not-valid-tip {
   display: block;
   margin-top: 8px;
-  color: #b3372b;
+  color: var(--sg-c-error);
   font-size: 12px;
 }
 
@@ -4638,7 +4639,7 @@
   padding: 0 14px;
   border: 1px solid var(--sg-c-field);
   border-radius: 0;
-  background-color: #fff;
+  background-color: var(--sg-c-field-bg);
   color: var(--sg-c-text);
   font-family: inherit;
   font-size: 16px;
@@ -4660,7 +4661,7 @@
   padding: 0 32px;
   border: 1px solid var(--sg-c-accent);
   background: var(--sg-c-accent);
-  color: #fff;
+  color: var(--sg-c-on-accent);
   font-size: 15px;
   letter-spacing: 0.2em;
   cursor: pointer;
@@ -4674,7 +4675,7 @@
 
 /* 暗い背景の上（トップページのご予約欄） */
 .sg-site .sg-search--dark {
-  background: rgba(20, 17, 14, 0.55);
+  background: var(--sg-c-overlay);
 }
 
 .sg-site .sg-search--dark label {
@@ -4682,9 +4683,9 @@
 }
 
 .sg-site .sg-search--dark .sg-search__submit:hover {
-  border-color: #fff;
-  background: #fff;
-  color: var(--sg-c-accent);
+  border-color: var(--sg-c-invert);
+  background: var(--sg-c-invert);
+  color: var(--sg-c-on-invert);
 }
 
 @media (min-width: 1024px) {
@@ -5024,5 +5025,49 @@
   .sg-site .sg-article--page .sg-article__container,
   .sg-site .sg-article--noimage .sg-article__container {
     padding-top: 56px;
+  }
+}
+
+
+/* =============================================================
+   28. ロゴ画像（ヘッダー・フッター・ローディング）
+   ============================================================= */
+.sg-site .sg-header__logo-img {
+  display: block;
+  width: auto;
+  height: 30px;
+}
+
+.sg-site .sg-footer__logo {
+  display: block;
+  width: 220px;
+  height: auto;
+}
+
+.sg-site .sg-footer__operator {
+  margin-top: 14px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}
+
+.sg-site .sg-loader__logo {
+  display: block;
+  width: 240px;
+  height: auto;
+  animation: sg-fade-in 1.4s 0.2s both;
+}
+
+@media (min-width: 1024px) {
+  .sg-site .sg-header__logo-img {
+    height: 38px;
+  }
+
+  .sg-site .sg-footer__logo {
+    width: 260px;
+  }
+
+  .sg-site .sg-loader__logo {
+    width: 300px;
   }
 }

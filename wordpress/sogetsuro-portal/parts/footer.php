@@ -10,12 +10,9 @@ defined( 'ABSPATH' ) || exit;
 
 $sg_site_name = sg_portal_option( 'site_name' );
 $sg_privacy   = sg_portal_url( sg_portal_option( 'privacy_url' ) );
-$sg_sns       = array_filter(
-	array(
-		'Instagram' => sg_portal_option( 'instagram' ),
-		'Facebook'  => sg_portal_option( 'facebook' ),
-	)
-);
+$sg_sns       = sg_portal_sns();
+$sg_logo      = sg_portal_option( 'logo_image' ) ? sg_portal_url( sg_portal_option( 'logo_image' ) ) : '';
+$sg_operator  = sg_portal_option( 'operator' );
 ?>
 	</main>
 
@@ -23,8 +20,12 @@ $sg_sns       = array_filter(
 	<footer class="sg-footer">
 		<div class="sg-inner sg-footer__inner">
 			<div class="sg-footer__brand">
+				<?php if ( $sg_logo ) : ?>
+				<img class="sg-footer__logo" src="<?php echo esc_url( $sg_logo ); ?>" alt="<?php echo esc_attr( $sg_site_name ); ?>" width="796" height="194" loading="lazy" decoding="async">
+				<?php else : ?>
 				<svg class="sg-footer__mark" aria-hidden="true"><use href="#sg-emblem"></use></svg>
 				<p class="sg-footer__name"><?php echo esc_html( $sg_site_name ); ?></p>
+				<?php endif; ?>
 				<p class="sg-footer__sub"><?php echo esc_html( sg_portal_option( 'site_sub' ) ); ?></p>
 			</div>
 			<div class="sg-footer__info">
@@ -36,6 +37,9 @@ $sg_sns       = array_filter(
 					<li><a href="<?php echo esc_url( $sg_url ); ?>" target="_blank" rel="noopener"><?php echo esc_html( $sg_label ); ?></a></li>
 					<?php endforeach; ?>
 				</ul>
+				<?php endif; ?>
+				<?php if ( $sg_operator ) : ?>
+				<p class="sg-footer__operator">運営：<?php echo esc_html( $sg_operator ); ?></p>
 				<?php endif; ?>
 			</div>
 			<nav class="sg-footer__nav" aria-label="フッターメニュー">

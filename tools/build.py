@@ -32,9 +32,7 @@ LINKS = {
     'index.html': '/',
     'journal.html': '/journal/',
     'journal-article.html': '/journal/',
-    'stay-omoya.html': '/stay-omoya/',
-    'stay-hanare.html': '/stay-hanare/',
-    'stay-kura.html': '/stay-kura/',
+    'stay.html': '/stay/',
     'contact.html': '/contact/',
     'reserve.html': '/reserve/',
 }
@@ -42,9 +40,7 @@ LINKS = {
 # WordPress の固定ページに貼る HTML を作るページ（記事一覧・記事ページはプラグインのテンプレートが表示）
 WP_PAGES = [
     ('index.html', 'top.html', 'トップページ', '（「設定 → 表示設定」でホームページに指定）'),
-    ('stay-omoya.html', 'stay-omoya.html', '宿の詳細（母屋）', 'stay-omoya'),
-    ('stay-hanare.html', 'stay-hanare.html', '宿の詳細（離れ）', 'stay-hanare'),
-    ('stay-kura.html', 'stay-kura.html', '宿の詳細（蔵）', 'stay-kura'),
+    ('stay.html', 'stay.html', '泊まる（宿の詳細）', 'stay'),
     ('contact.html', 'contact.html', 'お問い合わせ', 'contact'),
     ('reserve.html', 'reserve.html', 'ご予約', 'reserve'),
 ]

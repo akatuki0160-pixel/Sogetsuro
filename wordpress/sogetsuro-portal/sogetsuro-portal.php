@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       SOGETSURO Portal
  * Description:       古民家ポータルサイト「SOGETSURO」のデザイン一式。全ページ共通のヘッダー・フッター、記事（投稿）の一覧・詳細テンプレート、設定画面、ショートコード（お知らせ・記事・Beds24予約画面）を追加します。
- * Version:           1.1.0
+ * Version:           1.2.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * License:           GPL-2.0-or-later
@@ -13,7 +13,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SG_PORTAL_VERSION', '1.1.0' );
+define( 'SG_PORTAL_VERSION', '1.2.0' );
 define( 'SG_PORTAL_FILE', __FILE__ );
 define( 'SG_PORTAL_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SG_PORTAL_URL', plugin_dir_url( __FILE__ ) );

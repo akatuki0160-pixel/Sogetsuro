@@ -20,13 +20,16 @@ function sg_portal_fields() {
 		'basic'    => array(
 			'title'  => '基本情報',
 			'fields' => array(
-				'site_name' => array( 'label' => '施設名（ロゴの文字）', 'type' => 'text', 'default' => 'SOGETSURO' ),
-				'site_sub'  => array( 'label' => 'サブタイトル', 'type' => 'text', 'default' => '古民家の宿' ),
-				'tel'       => array( 'label' => '電話番号', 'type' => 'text', 'default' => '0000-00-0000', 'help' => 'ハイフン付きで入力してください。タップで発信できるリンクは自動で作られます。' ),
-				'tel_hours' => array( 'label' => '電話の受付時間', 'type' => 'text', 'default' => '9:00〜18:00（水曜定休）' ),
-				'address'   => array( 'label' => '住所', 'type' => 'text', 'default' => '〒000-0000 〇〇県〇〇市〇〇町0-00' ),
-				'instagram' => array( 'label' => 'Instagram のURL', 'type' => 'url', 'default' => '', 'help' => '空欄にすると表示されません。' ),
-				'facebook'  => array( 'label' => 'Facebook のURL', 'type' => 'url', 'default' => '', 'help' => '空欄にすると表示されません。' ),
+				'site_name' => array( 'label' => '施設名', 'type' => 'text', 'default' => '湊月楼', 'help' => 'ロゴ画像の代わりの文字や、コピーライトなどに使われます。' ),
+				'site_sub'  => array( 'label' => 'サブタイトル', 'type' => 'text', 'default' => '佐渡町家一棟貸しの宿' ),
+				'tel'       => array( 'label' => '電話番号', 'type' => 'text', 'default' => '0259-27-2550', 'help' => 'ハイフン付きで入力してください。タップで発信できるリンクは自動で作られます。' ),
+				'tel_hours' => array( 'label' => '電話の受付時間', 'type' => 'text', 'default' => '', 'help' => '今は表示に使っていません（控えとしてご利用ください）。' ),
+				'address'   => array( 'label' => '住所', 'type' => 'text', 'default' => '〒952-0014 新潟県佐渡市両津湊39' ),
+				'operator'  => array( 'label' => '運営会社', 'type' => 'text', 'default' => '株式会社アジアンドキュメンタリーズ', 'help' => 'フッターに「運営：〇〇」と表示されます。空欄にすると表示されません。' ),
+				'instagram' => array( 'label' => 'Instagram のURL', 'type' => 'url', 'default' => 'https://www.instagram.com/sogetsuro_sado', 'help' => '空欄にすると表示されません。' ),
+				'facebook'  => array( 'label' => 'Facebook のURL', 'type' => 'url', 'default' => 'https://www.facebook.com/sougetsurou.sado', 'help' => '空欄にすると表示されません。' ),
+				'line'      => array( 'label' => 'LINE のURL', 'type' => 'url', 'default' => 'https://lin.ee/ufmJAFa', 'help' => '空欄にすると表示されません。' ),
+				'whatsapp'  => array( 'label' => 'WhatsApp のURL', 'type' => 'url', 'default' => 'https://wa.me/message/SHPZVZGGMMDHG1', 'help' => '空欄にすると表示されません。' ),
 			),
 		),
 		'links'    => array(
@@ -47,6 +50,8 @@ function sg_portal_fields() {
 		'images'   => array(
 			'title'  => '画像',
 			'fields' => array(
+				'logo_image'   => array( 'label' => 'ロゴ画像（白）', 'type' => 'url', 'default' => '/wp-content/uploads/sogetsuro/logo.png', 'help' => 'ヘッダー・フッター・ローディングに表示されます。空欄にすると、施設名の文字で表示します。' ),
+				'logo_mark'    => array( 'label' => 'ロゴマーク（白）', 'type' => 'url', 'default' => '/wp-content/uploads/sogetsuro/logo-mark.png', 'help' => '写真のない記事カードなどに表示されます。' ),
 				'journal_hero' => array( 'label' => '記事一覧の見出し画像', 'type' => 'url', 'default' => '/wp-content/uploads/sogetsuro/page-journal.jpg', 'help' => '「投稿ページ」に指定した固定ページにアイキャッチ画像を設定すると、そちらが優先されます。' ),
 				'cta_image'    => array( 'label' => '記事ページ下の予約バナーの画像', 'type' => 'url', 'default' => '/wp-content/uploads/sogetsuro/reserve.jpg' ),
 				'menu_image'   => array( 'label' => 'メニューを開いたときの画像', 'type' => 'url', 'default' => '/wp-content/uploads/sogetsuro/menu.jpg' ),
@@ -55,11 +60,11 @@ function sg_portal_fields() {
 		'colors'   => array(
 			'title'  => '配色',
 			'fields' => array(
-				'color_bg'     => array( 'label' => '背景', 'type' => 'color', 'default' => '#f4f1ea', 'var' => '--sg-c-bg' ),
-				'color_bg_sub' => array( 'label' => '背景（サブ）', 'type' => 'color', 'default' => '#ebe5da', 'var' => '--sg-c-bg-sub' ),
-				'color_text'   => array( 'label' => '文字', 'type' => 'color', 'default' => '#2b2724', 'var' => '--sg-c-text' ),
-				'color_accent' => array( 'label' => 'アクセント（予約ボタン・番号）', 'type' => 'color', 'default' => '#8b3d2c', 'var' => '--sg-c-accent' ),
-				'color_dark'   => array( 'label' => '暗い背景（メニュー・フッター）', 'type' => 'color', 'default' => '#211e1b', 'var' => '--sg-c-dark' ),
+				'color_bg'     => array( 'label' => '背景', 'type' => 'color', 'default' => '#030925', 'var' => '--sg-c-bg' ),
+				'color_bg_sub' => array( 'label' => '背景（サブ）', 'type' => 'color', 'default' => '#0a1433', 'var' => '--sg-c-bg-sub' ),
+				'color_text'   => array( 'label' => '文字', 'type' => 'color', 'default' => '#efece6', 'var' => '--sg-c-text' ),
+				'color_accent' => array( 'label' => 'アクセント（予約ボタン・番号）', 'type' => 'color', 'default' => '#cfa85a', 'var' => '--sg-c-accent' ),
+				'color_dark'   => array( 'label' => '暗い背景（メニュー・フッター）', 'type' => 'color', 'default' => '#01040f', 'var' => '--sg-c-dark' ),
 			),
 		),
 		'behavior' => array(
@@ -269,5 +274,45 @@ add_action(
 			echo '<li>' . esc_html( $message ) . '</li>';
 		}
 		echo '</ul></div>';
+	}
+);
+
+/**
+ * 更新したときの引き継ぎ
+ * 以前の版の初期値のまま保存されている項目（設定画面で「変更を保存」を押すと、触っていない項目も
+ * その時点の初期値で保存されます）を、新しい初期値に置き換えます。自分で入力した値はそのままです。
+ */
+add_action(
+	'init',
+	function () {
+		if ( get_option( 'sogetsuro_portal_version' ) === SG_PORTAL_VERSION ) {
+			return;
+		}
+		$saved = get_option( SG_PORTAL_OPTION );
+		if ( is_array( $saved ) && $saved ) {
+			$old_defaults = array(
+				'site_name'    => 'SOGETSURO',
+				'site_sub'     => '古民家の宿',
+				'tel'          => '0000-00-0000',
+				'tel_hours'    => '9:00〜18:00（水曜定休）',
+				'address'      => '〒000-0000 〇〇県〇〇市〇〇町0-00',
+				'instagram'    => '',
+				'facebook'     => '',
+				'color_bg'     => '#f4f1ea',
+				'color_bg_sub' => '#ebe5da',
+				'color_text'   => '#2b2724',
+				'color_accent' => '#8b3d2c',
+				'color_dark'   => '#211e1b',
+			);
+			$defaults = sg_portal_defaults();
+			$options  = wp_parse_args( $saved, $defaults ); // 新しく増えた項目は初期値で
+			foreach ( $old_defaults as $key => $value ) {
+				if ( isset( $options[ $key ] ) && (string) $options[ $key ] === $value ) {
+					$options[ $key ] = $defaults[ $key ];
+				}
+			}
+			update_option( SG_PORTAL_OPTION, $options );
+		}
+		update_option( 'sogetsuro_portal_version', SG_PORTAL_VERSION );
 	}
 );

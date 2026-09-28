@@ -13,12 +13,9 @@ $sg_site_name = sg_portal_option( 'site_name' );
 $sg_site_sub  = sg_portal_option( 'site_sub' );
 $sg_reserve   = sg_portal_url( sg_portal_option( 'reserve_url' ) );
 $sg_nav       = sg_portal_nav_items();
-$sg_sns       = array_filter(
-	array(
-		'Instagram' => sg_portal_option( 'instagram' ),
-		'Facebook'  => sg_portal_option( 'facebook' ),
-	)
-);
+$sg_sns       = sg_portal_sns();
+$sg_logo      = sg_portal_option( 'logo_image' ) ? sg_portal_url( sg_portal_option( 'logo_image' ) ) : '';
+$sg_mark      = sg_portal_option( 'logo_mark' ) ? sg_portal_url( sg_portal_option( 'logo_mark' ) ) : '';
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -37,17 +34,25 @@ $sg_sns       = array_filter(
 	<!-- ローディング（トップページのみ） -->
 	<div class="sg-loader" aria-hidden="true">
 		<div class="sg-loader__inner">
+			<?php if ( $sg_logo ) : ?>
+			<img class="sg-loader__logo" src="<?php echo esc_url( $sg_logo ); ?>" alt="" width="796" height="194">
+			<?php else : ?>
 			<svg class="sg-loader__mark"><use href="#sg-emblem"></use></svg>
 			<span class="sg-loader__name"><?php echo esc_html( $sg_site_name ); ?></span>
+			<?php endif; ?>
 		</div>
 	</div>
 	<?php endif; ?>
 
-	<!-- ロゴマーク（円窓） -->
+	<!-- ロゴマーク（写真のない記事カードなどに使います） -->
 	<svg class="sg-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
 		<symbol id="sg-emblem" viewBox="0 0 48 48">
+			<?php if ( $sg_mark ) : ?>
+			<image href="<?php echo esc_url( $sg_mark ); ?>" width="48" height="48"/>
+			<?php else : ?>
 			<circle cx="24" cy="24" r="22.5" fill="none" stroke="currentColor" stroke-width="1"/>
 			<path fill="none" stroke="currentColor" stroke-width="1" d="M16 2.97V45.03M24 1.5V46.5M32 2.97V45.03M2.62 31H45.38"/>
+			<?php endif; ?>
 		</symbol>
 	</svg>
 
@@ -55,10 +60,14 @@ $sg_sns       = array_filter(
 	<header class="sg-header">
 		<div class="sg-header__inner">
 			<a class="sg-header__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( $sg_site_name ); ?> トップページへ">
+				<?php if ( $sg_logo ) : ?>
+				<img class="sg-header__logo-img" src="<?php echo esc_url( $sg_logo ); ?>" alt="<?php echo esc_attr( $sg_site_name ); ?>" width="796" height="194">
+				<?php else : ?>
 				<svg class="sg-header__mark" aria-hidden="true"><use href="#sg-emblem"></use></svg>
 				<span class="sg-header__name"><?php echo esc_html( $sg_site_name ); ?></span>
-				<?php if ( $sg_site_sub ) : ?>
+					<?php if ( $sg_site_sub ) : ?>
 				<span class="sg-header__sub"><?php echo esc_html( $sg_site_sub ); ?></span>
+					<?php endif; ?>
 				<?php endif; ?>
 			</a>
 			<nav class="sg-gnav" aria-label="メインメニュー">

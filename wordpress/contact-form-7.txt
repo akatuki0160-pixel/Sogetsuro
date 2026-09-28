@@ -22,7 +22,7 @@
 <div class="sg-form__rows">
 <div class="sg-form__row">
 <p class="sg-form__label">お問い合わせの種類<span class="sg-form__req">必須</span></p>
-<div class="sg-form__field">[radio inquiry-type use_label_element default:1 "ご宿泊について" "お食事・体験について" "取材・撮影について" "その他"]</div>
+<div class="sg-form__field">[radio inquiry-type use_label_element default:1 "プライベートガイドのご予約" "ご宿泊について" "体験について" "取材・撮影について" "その他"]</div>
 </div>
 <div class="sg-form__row">
 <label class="sg-form__label" for="sg-f-name">お名前<span class="sg-form__req">必須</span></label>
@@ -41,13 +41,13 @@
 <div class="sg-form__field">[tel your-tel id:sg-f-tel autocomplete:tel placeholder "例）000-0000-0000"]</div>
 </div>
 <div class="sg-form__row">
-<label class="sg-form__label" for="sg-f-date">ご宿泊予定日<span class="sg-form__opt">任意</span></label>
+<label class="sg-form__label" for="sg-f-date">ご希望日<span class="sg-form__opt">任意</span></label>
 <div class="sg-form__field">[date stay-date id:sg-f-date]
-<p class="sg-form__help">ご宿泊についてのお問い合わせの場合はご入力ください。</p></div>
+<p class="sg-form__help">ガイド・ご宿泊・体験のご希望日をご入力ください。</p></div>
 </div>
 <div class="sg-form__row">
 <label class="sg-form__label" for="sg-f-guests">ご人数<span class="sg-form__opt">任意</span></label>
-<div class="sg-form__field">[select guests id:sg-f-guests first_as_label "選択してください" "1名" "2名" "3名" "4名" "5名" "6名" "7名" "8名" "9名以上"]</div>
+<div class="sg-form__field">[select guests id:sg-f-guests first_as_label "選択してください" "1名" "2名" "3名" "4名" "5名" "6名" "7名以上"]</div>
 </div>
 <div class="sg-form__row">
 <label class="sg-form__label" for="sg-f-message">お問い合わせ内容<span class="sg-form__req">必須</span></label>
@@ -71,7 +71,7 @@
 お名前：[your-name]（[your-kana]）
 メールアドレス：[your-email]
 電話番号：[your-tel]
-ご宿泊予定日：[stay-date]
+ご希望日：[stay-date]
 ご人数：[guests]
 
 お問い合わせ内容：
@@ -93,7 +93,7 @@
 [your-name] 様
 
 このたびはお問い合わせいただき、ありがとうございます。
-以下の内容で受け付けました。3営業日以内に担当者よりご連絡いたします。
+以下の内容で受け付けました。担当者より折り返しご連絡いたします。
 
 お問い合わせの種類：[inquiry-type]
 お問い合わせ内容：
